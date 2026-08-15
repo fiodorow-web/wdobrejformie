@@ -1,0 +1,66 @@
+/*
+ * Scroll reveal: fade plus a short movement, 520ms, once per element.
+ *
+ * Starts visible and is hidden by .armed only after the observer attaches on the
+ * client. That ordering matters: it means the server HTML is fully readable with
+ * JavaScript disabled, instead of shipping a page of invisible content.
+ *
+ * The variant classes only ever change the *from* transform — the landing state
+ * is always "no transform", so any of them can sit next to any other without the
+ * page settling into different positions.
+ */
+.reveal {
+  transition:
+    opacity 520ms var(--ease-standard),
+    transform 520ms var(--ease-standard);
+}
+
+.armed {
+  opacity: 0;
+}
+
+/* rise — the default: a short lift from below. */
+.armed.rise {
+  transform: translateY(18px);
+}
+
+/* fade — opacity only, for elements where movement would fight the layout. */
+.armed.fade {
+  transform: none;
+}
+
+/* zoom — for cards and media that should feel like they settle into place. */
+.armed.zoom {
+  transform: scale(0.965);
+}
+
+/* left / right — for the two halves of a split section, arriving inward. */
+.armed.left {
+  transform: translateX(-26px);
+}
+
+.armed.right {
+  transform: translateX(26px);
+}
+
+/*
+ * Reduce, don't remove. The setting exists to stop travel, scaling and
+ * parallax — the things that trigger vestibular symptoms — not to strip the
+ * page of every transition. Every variant collapses to the same plain fade,
+ * slightly quicker, with nothing moving in any direction.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: opacity 300ms var(--ease-standard);
+  }
+
+  .armed,
+  .armed.rise,
+  .armed.fade,
+  .armed.zoom,
+  .armed.left,
+  .armed.right {
+    opacity: 0;
+    transform: none;
+  }
+}

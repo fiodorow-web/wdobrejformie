@@ -1,0 +1,34 @@
+.card {
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  font-family: var(--font-body);
+  border: 1px solid transparent;
+}
+
+.default {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.elevated {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.tint {
+  background: var(--color-accent-tint);
+  border-color: var(--green-100);
+}
+
+.plumTint {
+  background: var(--color-accent-2-tint);
+  border-color: var(--plum-100);
+}
+
+.dark {
+  background: var(--neutral-900);
+  border-color: var(--neutral-800);
+  color: var(--color-text-on-dark);
+}

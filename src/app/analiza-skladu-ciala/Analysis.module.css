@@ -1,0 +1,60 @@
+.parameters {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3) var(--space-8);
+  counter-reset: parameter;
+}
+
+@media (min-width: 700px) {
+  .parameters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .parameters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.parameters li {
+  counter-increment: parameter;
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.parameters li::before {
+  content: counter(parameter, decimal-leading-zero);
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.warning {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  border-left: 3px solid var(--color-warning);
+}
+
+.warningIcon {
+  flex: none;
+  color: var(--color-warning);
+  margin-top: 2px;
+}
+
+.warningList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--color-text-primary);
+  font-weight: var(--fw-semibold);
+}

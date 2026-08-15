@@ -1,0 +1,81 @@
+.card {
+  height: 100%;
+  padding: var(--space-8);
+  scroll-margin-top: 96px;
+}
+
+.icon {
+  color: var(--color-cta);
+  margin-bottom: var(--space-4);
+}
+
+.iconPlum {
+  composes: icon;
+  color: var(--color-accent-2);
+}
+
+.name {
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-cta);
+  margin-block: var(--space-2) var(--space-4);
+}
+
+.pricePlum {
+  composes: price;
+  color: var(--color-accent-2);
+}
+
+.summary {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.includes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.includes dt {
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.includes dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.account {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.accountLabel {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+}
+
+.accountNumber {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  word-spacing: 0.15em;
+}

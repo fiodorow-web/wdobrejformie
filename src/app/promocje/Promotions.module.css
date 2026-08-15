@@ -1,0 +1,57 @@
+.card {
+  height: 100%;
+  padding: var(--space-8);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.summary {
+  font-weight: var(--fw-semibold);
+  color: var(--color-cta);
+  margin-bottom: var(--space-5);
+  line-height: var(--leading-snug);
+}
+
+.summaryPlum {
+  composes: summary;
+  color: var(--color-accent-2);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.list li {
+  padding-left: var(--space-5);
+  position: relative;
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.footnote {
+  margin-top: var(--space-5);
+  font-size: var(--text-xs);
+  /* --color-text-muted lands at 4.08–4.2:1 on the tint surfaces — below AA. */
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,39 @@
+/*
+ * Section rhythm. The design system alternates white and pale-sage bands to
+ * separate blocks without borders; the prototype hard-coded 72px/76px padding,
+ * which the adherence lint would reject. Tokens instead.
+ */
+.section {
+  padding-block: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--space-20);
+  }
+}
+
+.tight {
+  padding-block: var(--space-12);
+}
+
+.surface {
+  background: var(--color-surface);
+}
+
+.alt {
+  background: var(--color-bg);
+}
+
+.tint {
+  background: var(--color-accent-tint);
+}
+
+.dark {
+  background: var(--neutral-900);
+  color: var(--color-text-on-dark);
+}
+
+.plumTint {
+  background: var(--color-accent-2-tint);
+}

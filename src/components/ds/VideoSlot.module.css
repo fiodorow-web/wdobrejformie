@@ -1,0 +1,43 @@
+.frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--neutral-900);
+}
+
+.inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.play {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 10px rgba(31, 179, 24, 0.18);
+}
+
+.plum .play {
+  background: var(--color-accent-2);
+  box-shadow: 0 0 0 10px rgba(182, 58, 119, 0.18);
+}
+
+.label {
+  color: var(--neutral-400);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 0 var(--space-5);
+  margin: 0;
+}

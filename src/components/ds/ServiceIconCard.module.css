@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cta);
+  flex: none;
+}
+
+.plum .icon {
+  background: var(--color-accent-2-tint);
+  color: var(--color-accent-2);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}

@@ -1,0 +1,33 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+
+.env
+.env*.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+next-env.d.ts
+.tsbuildinfo
+*.tsbuildinfo
+
+/playwright-report/
+/test-results/
+/blob-report/
+/playwright/.cache/
+
+.vercel
+coverage-report.md
+
+# Read-only design-system export: 51 MB of source PDFs, research and uploads
+# (the two largest PDFs are byte-identical duplicates of each other). Nothing
+# imports it — eslint.config.mjs and tsconfig.json both exclude it already, and
+# the tokens it produced live in src/styles/tokens.css. Keep it as a local
+# reference; to version it anyway, delete this line and commit the folder.
+w-dobrej-formie-design-system/

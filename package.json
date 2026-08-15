@@ -1,0 +1,48 @@
+{
+  "name": "wdobrejformie",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "migrate:blog": "tsx scripts/migrate-blog.ts && npm run optimize:images",
+    "verify:coverage": "tsx scripts/verify-coverage.ts",
+    "verify:redirects": "tsx scripts/verify-redirects.ts",
+    "test:e2e": "playwright test",
+    "optimize:images": "tsx scripts/optimize-images.ts"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.0",
+    "next-mdx-remote": "^6.0.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "resend": "^6.19.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.0",
+    "rehype-parse": "^9.0.1",
+    "rehype-remark": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-stringify": "^11.0.0",
+    "sharp": "^0.35.3",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "unrs-resolver@1.12.2": true
+  }
+}

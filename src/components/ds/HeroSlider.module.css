@@ -1,0 +1,260 @@
+.hero {
+  position: relative;
+  min-height: 520px;
+  height: 84vh;
+  max-height: 900px;
+  overflow: hidden;
+  background: var(--neutral-900);
+  font-family: var(--font-body);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1100ms var(--ease-standard);
+}
+
+.slideActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/*
+ * Slow Ken Burns push, only on the visible slide, running for exactly one
+ * dwell (--slide-duration, set by the component from its interval prop). The
+ * direction alternates: three slides all drifting the same way reads as a
+ * glitch rather than as camera movement.
+ */
+.kenBurns {
+  position: absolute;
+  inset: 0;
+}
+
+.slideActive .kenBurns {
+  animation: wdf-ken-burns var(--slide-duration, 5000ms) linear both;
+}
+
+.slide:nth-child(even).slideActive .kenBurns {
+  animation-name: wdf-ken-burns-alt;
+}
+
+@keyframes wdf-ken-burns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.09) translate3d(0, -1.2%, 0);
+  }
+}
+
+@keyframes wdf-ken-burns-alt {
+  from {
+    transform: scale(1.09) translate3d(0, 1%, 0);
+  }
+  to {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 23, 15, 0.55) 0%,
+    rgba(20, 23, 15, 0.28) 40%,
+    rgba(20, 23, 15, 0.86) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.copy {
+  width: 100%;
+  padding-bottom: 84px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+/* Staggered text rise, per the design system's 120/220/340/460ms cadence. */
+.slideActive .copy > * {
+  animation: wdf-rise 760ms var(--ease-standard) both;
+}
+
+.slideActive .copy > *:nth-child(1) {
+  animation-delay: 120ms;
+}
+
+.slideActive .copy > *:nth-child(2) {
+  animation-delay: 220ms;
+}
+
+.slideActive .copy > *:nth-child(3) {
+  animation-delay: 340ms;
+}
+
+.slideActive .copy > *:nth-child(4) {
+  animation-delay: 460ms;
+}
+
+@keyframes wdf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-300);
+}
+
+.eyebrowPlum {
+  color: var(--color-accent-2-soft);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-on-accent);
+  margin: 0;
+  max-width: 20ch;
+}
+
+.subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  max-width: 46ch;
+}
+
+/* ---- Slide picker ---- */
+.rails {
+  position: absolute;
+  bottom: 34px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.railsInner {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.rail {
+  flex: 0 0 28px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  transition: flex-basis 420ms var(--ease-standard);
+}
+
+.railActive {
+  flex-basis: 74px;
+}
+
+.railFill {
+  display: block;
+  height: 100%;
+  background: var(--color-on-accent);
+  animation: wdf-rail var(--rail-duration, 5000ms) linear both;
+}
+
+.railFillPaused {
+  animation-play-state: paused;
+}
+
+@keyframes wdf-rail {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.playPause {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: var(--radius-pill);
+  background: rgba(20, 23, 15, 0.35);
+  color: var(--color-on-accent);
+  cursor: pointer;
+  transition:
+    background var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.playPause:hover,
+.playPause:focus-visible {
+  background: rgba(20, 23, 15, 0.6);
+  border-color: var(--color-on-accent);
+}
+
+.counter {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+}
+
+/*
+ * Reduced motion keeps the slideshow running but strips the movement out of
+ * it: no Ken Burns push on the photo, no text sliding up from below. What is
+ * left is a crossfade between slides, which travels nowhere. The rail keeps
+ * filling because it is a 3px progress bar and it is the only thing telling
+ * the visitor when the next slide is due.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .slideActive .kenBurns,
+  .slideActive .copy > * {
+    animation: none;
+  }
+}

@@ -1,0 +1,188 @@
+/*
+ * Design tokens — W Dobrej Formie
+ *
+ * Copied verbatim from the Claude Design export:
+ *   w-dobrej-formie-design-system/project/tokens/{colors,typography,spacing,effects}.css
+ *
+ * Two deliberate deviations from the export:
+ *  1. tokens/fonts.css (a Google Fonts @import) is NOT copied — next/font self-hosts
+ *     Manrope and exposes it as --font-manrope. See src/app/layout.tsx.
+ *  2. --font-display / --font-body point at that variable instead of a bare 'Manrope'.
+ *
+ * Values are otherwise unchanged. Do not "tidy" them — the adherence lint
+ * (_adherence.oxlintrc.json) treats this list as the only legal source of colour,
+ * spacing, radius and shadow values in the codebase.
+ */
+
+:root {
+  /* ---- Green: dietetyka (consultations, meal plans, body analysis) ---- */
+  --green-50: #f1f9ef;
+  --green-100: #dff0da;
+  --green-200: #bfe2b6;
+  --green-300: #96cf88;
+  --green-400: #5fba53;
+  --green-500: #1fb318;
+  --green-600: #189614;
+  --green-700: #10730e;
+  --green-800: #0b5a0a;
+  --green-900: #073d07;
+
+  /* ---- Neutrals: sage-tinted graphite, never pure gray ---- */
+  --neutral-0: #ffffff;
+  --neutral-50: #f6f8f5;
+  --neutral-100: #eef2ec;
+  --neutral-200: #e1e7de;
+  --neutral-300: #c9d2c5;
+  --neutral-400: #9aa694;
+  --neutral-500: #6e7a69;
+  --neutral-600: #4f594b;
+  --neutral-700: #37402f;
+  --neutral-800: #262b23;
+  --neutral-900: #14170f;
+
+  --red-500: #c23b2b;
+  --gold-500: #b8862e;
+
+  /* ---- Plum: strefa zabiegowa (lipolaser, cavitation, RF, cryolipolysis) ---- */
+  --plum-50: #fbf1f6;
+  --plum-100: #f5deea;
+  --plum-200: #e9bcd2;
+  --plum-300: #d890b2;
+  --plum-400: #c7638f;
+  --plum-500: #b63a77;
+  --plum-600: #9c2f65;
+  --plum-700: #7e2551;
+  --plum-800: #5f1c3d;
+  --plum-900: #40122a;
+
+  /* ---- Semantic aliases ---- */
+  --color-bg: var(--neutral-50);
+  --color-surface: var(--neutral-0);
+  --color-surface-alt: var(--neutral-100);
+  --color-border: var(--neutral-200);
+  --color-border-strong: var(--neutral-300);
+
+  --color-text-primary: var(--neutral-900);
+  --color-text-secondary: var(--neutral-600);
+  /*
+   * DELIBERATE DEVIATION from the export, which maps this to --neutral-500.
+   *
+   * The design system's readme states "all body text neutrals are checked for
+   * ≥4.5:1 against their intended background". --neutral-500 (#6E7A69) does not
+   * meet that: measured 4.2:1 on --green-50, 4.22:1 on --neutral-50 and 4.08:1
+   * on --plum-50, all below AA for the small text this token is used for. Every
+   * use of it in this codebase is small text (captions, labels, footnotes), so
+   * the alias points one step darker. --neutral-500 itself is untouched and
+   * remains available for large or decorative text.
+   *
+   * Raise with the design system's author — the token, not this site, is wrong.
+   */
+  --color-text-muted: var(--neutral-600);
+  --color-text-on-dark: var(--neutral-50);
+
+  /*
+   * --color-accent (#1FB318) is ~2.8:1 on white — decorative use only.
+   * Solid CTAs must use --color-cta (#10730E, ~6:1). See design-system readme.md.
+   */
+  --color-accent: var(--green-500);
+  --color-accent-tint: var(--green-50);
+  --color-accent-tint-strong: var(--green-100);
+  --color-cta: var(--green-700);
+  --color-cta-hover: var(--green-800);
+  --color-cta-active: var(--green-900);
+
+  /* Plum clears AA with white text at ~5.4:1, so it fills directly. */
+  --color-accent-2: var(--plum-500);
+  --color-accent-2-hover: var(--plum-600);
+  --color-accent-2-tint: var(--plum-50);
+  --color-accent-2-soft: var(--plum-300);
+
+  --color-on-accent: #ffffff;
+  --color-focus-ring: var(--green-500);
+
+  --color-success: var(--green-700);
+  --color-warning: var(--gold-500);
+  --color-danger: var(--red-500);
+
+  /* ---- Type ---- */
+  --font-display: var(--font-manrope), system-ui, sans-serif;
+  --font-body: var(--font-manrope), system-ui, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.375rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.25rem;
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.06em;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --container-max: 1180px;
+  --container-padding: 20px;
+
+  /* ---- Effects ---- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(20, 23, 15, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(20, 23, 15, 0.12);
+  --shadow-lg: 0 20px 48px -16px rgba(20, 23, 15, 0.16);
+  --shadow-accent: 0 10px 28px -10px rgba(16, 115, 14, 0.35);
+
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+
+  --blur-glass: 14px;
+}
+
+/*
+ * Responsive display sizes are token overrides, not clamp() — a deliberate
+ * design-system decision. Keep the two breakpoints exactly as exported.
+ */
+@media (min-width: 768px) {
+  :root {
+    --text-4xl: 3.375rem;
+    --text-5xl: 4.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --text-4xl: 4rem;
+    --text-5xl: 5.75rem;
+  }
+}

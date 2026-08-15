@@ -1,0 +1,236 @@
+.stats {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: var(--space-10);
+}
+
+.stat {
+  border-top: 2px solid var(--color-accent);
+  padding-top: var(--space-4);
+}
+
+.statValue {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ---- Service cards with photography ---- */
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.serviceCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.serviceBody {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.serviceTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.serviceText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.servicePrice {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-sm);
+  color: var(--color-cta);
+}
+
+.servicePricePlum {
+  color: var(--color-accent-2);
+}
+
+/* ---- Process steps ---- */
+.steps {
+  display: grid;
+  gap: var(--space-8);
+  counter-reset: step;
+}
+
+@media (min-width: 720px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.step {
+  counter-increment: step;
+  border-top: 1px solid var(--color-border-strong);
+  padding-top: var(--space-4);
+}
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-3);
+}
+
+.stepTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.stepText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---- Treatment band (plum) ---- */
+.treatmentGrid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 720px) {
+  .treatmentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .treatmentGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.treatmentCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--neutral-800);
+  border: 1px solid var(--neutral-700);
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+.treatmentCard:hover {
+  border-color: var(--color-accent-2);
+}
+
+.treatmentName {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-on-accent);
+}
+
+.treatmentTagline {
+  font-size: var(--text-sm);
+  color: var(--neutral-400);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.treatmentPrice {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-sm);
+  color: var(--color-accent-2-soft);
+}
+
+/* ---- CTA band ---- */
+.ctaCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-10);
+}
+
+.ctaTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-on-accent);
+}
+
+.ctaText {
+  color: var(--neutral-300);
+  max-width: 52ch;
+  line-height: var(--leading-relaxed);
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--green-300);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  padding: var(--space-3) 0;
+}
+
+.phone:hover {
+  color: var(--color-on-accent);
+}
+
+/*
+ * A photo that would look overblown at full container width — a close-up, or
+ * anything that is an accent rather than the point of the section.
+ */
+.mediaNarrow {
+  max-width: 480px;
+  margin-inline: auto;
+  margin-bottom: var(--space-10);
+}
