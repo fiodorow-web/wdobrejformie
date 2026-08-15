@@ -13,6 +13,27 @@
   animation: wdf-marquee 26s linear infinite;
 }
 
+/*
+ * The keyframes have to live in this module, not in base.css.
+ *
+ * CSS Modules rewrites animation names the same way it rewrites class names, so
+ * the `animation` above compiled to `Marquee-module__hash__wdf-marquee` while
+ * the global stylesheet still defined a plain `wdf-marquee`. The names never
+ * met, the animation resolved to nothing, and the strip sat still. Defining the
+ * keyframes here means both sides get the same hash.
+ *
+ * The track holds two copies of the list, so -50% lands exactly one copy along
+ * — the jump back to 0 is invisible and the scroll reads as endless.
+ */
+@keyframes wdf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .group {
   display: flex;
   align-items: center;
@@ -39,6 +60,22 @@
   flex: none;
 }
 
+/*
+ * Point at the strip and it holds still, so a word that catches the eye can
+ * actually be read. This is also the "pause" half of WCAG 2.2.2 — content that
+ * scrolls indefinitely is meant to be stoppable. There is nothing focusable in
+ * here to give it a keyboard equivalent, which is fine: the strip repeats links
+ * that exist as real navigation elsewhere on the page.
+ */
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/*
+ * Here the motion is the whole effect and none of the meaning — every word is
+ * still on screen and readable once it stops. So this one really is switched
+ * off rather than softened, unlike the fades elsewhere on the site.
+ */
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;

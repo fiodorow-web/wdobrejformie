@@ -151,6 +151,16 @@
   --container-max: 1180px;
   --container-padding: 20px;
 
+  /*
+   * Height of the sticky navigation bar.
+   *
+   * Not decoration — the full-screen hero subtracts it so that bar plus hero
+   * come to exactly one screen. NavBar.module.css pins itself to this value, so
+   * the two cannot drift apart. It steps up at 900px, where the bar swaps the
+   * mobile burger for the desktop links and the taller "Zapisz się" button.
+   */
+  --nav-height: 65px;
+
   /* ---- Effects ---- */
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -177,6 +187,12 @@
   :root {
     --text-4xl: 3.375rem;
     --text-5xl: 4.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --nav-height: 70px;
   }
 }
 

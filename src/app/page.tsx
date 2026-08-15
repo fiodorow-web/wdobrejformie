@@ -30,10 +30,18 @@ import styles from '@/components/sections/Home.module.css';
 import konsultacja from '@/assets/photos/konsultacja-dietetyczna-wegrow.webp';
 import analizator from '@/assets/photos/analizator-skladu-ciala-jawon-ioi.webp';
 import planZywieniowy from '@/assets/photos/indywidualny-plan-zywieniowy.webp';
-// The hero crops to roughly 2:1 and the service cards to 4:3, so both only ever
-// get landscape frames — a portrait photo loses its subject to the crop.
-import glowicaRf from '@/assets/photos/glowica-rf-modelowanie-sylwetki.webp';
+// The service cards crop to 4:3, so they only ever get landscape frames — a
+// portrait photo loses its subject to the crop.
 import lipolaser from '@/assets/photos/lipolaser-plytki-laserowe-na-udach.webp';
+/*
+ * Hero backgrounds. All three are 3:2, which the slider is built around: it
+ * sizes itself to that ratio and shows the frame whole wherever the window
+ * allows. Replacing one with a different shape reintroduces the letterbox, so
+ * keep new hero photos at 3:2.
+ */
+import tloSylwetka from '@/assets/photos/modelowanie-sylwetki-efekty-gabinet.webp';
+import tloDieta from '@/assets/photos/zdrowa-dieta-jadlospis-warzywa.webp';
+import tloStrefa from '@/assets/photos/strefa-zabiegowa-urzadzenie-modelujace.webp';
 import gabinet from '@/assets/photos/dietetyk-przy-biurku-w-gabinecie.webp';
 import magdalenaPortret from '@/assets/photos/magdalena-skolimowska-poradnia-dietetyczna.webp';
 
@@ -52,9 +60,11 @@ const slides: HeroSlide[] = [
       'Jadłospis układamy z produktów, które już jesz. Bez list zakazów, bez głodzenia się i bez suplementów.',
     ctaLabel: 'Zapisz się na konsultację',
     ctaHref: '/kontakt',
-    image: konsultacja,
-    imageAlt:
-      'Dietetyk Magdalena Skolimowska wita pacjentkę na konsultacji w poradni W Dobrej Formie w Węgrowie',
+    image: tloSylwetka,
+    imageAlt: 'Wysmuklona sylwetka kobiety obok urządzenia do modelowania ciała w jasnym gabinecie',
+    // X: she stands in the right third, so a centred phone crop halves her.
+    // Y: her head starts 5% down, so the desktop trim comes off the floor.
+    focal: '85% 0%',
     accent: 'green',
   },
   {
@@ -64,9 +74,12 @@ const slides: HeroSlide[] = [
       'Badanie BIA na analizatorze Jawon Medical pokazuje, ile naprawdę ważysz tłuszczem, mięśniami i wodą. Bezboleśnie, w kilkanaście minut.',
     ctaLabel: 'Umów badanie',
     ctaHref: '/analiza-skladu-ciala',
-    image: analizator,
+    image: tloDieta,
     imageAlt:
-      'Analizator składu ciała Jawon Medical ioi w gabinecie poradni dietetycznej w Węgrowie',
+      'Kobieta komponuje talerz sałatki ze świeżych warzyw, obok jadłospis, awokado i owoce',
+    // Same shape of frame as the first slide: subject right, face high. The
+    // fruit along the bottom of the counter is what the desktop trim spends.
+    focal: '85% 0%',
     accent: 'green',
   },
   {
@@ -76,9 +89,14 @@ const slides: HeroSlide[] = [
       'Lipolaser, liposukcja kawitacyjna, fale radiowe RF i kriolipoliza — zabiegi, które modelują sylwetkę tam, gdzie dieta działa najwolniej.',
     ctaLabel: 'Poznaj zabiegi',
     ctaHref: '/modelowanie-sylwetki',
-    image: glowicaRf,
+    image: tloStrefa,
     imageAlt:
-      'Zabieg modelowania sylwetki głowicą fal radiowych w strefie zabiegowej poradni W Dobrej Formie w Węgrowie',
+      'Urządzenie do modelowania sylwetki z głowicami zabiegowymi przy leżance w gabinecie',
+    // Top-anchored like the others, though for a different reason: this frame
+    // has a poster on the wall, and any trim off the top slices the lettering
+    // in half, which reads as a mistake. Cutting the base of the device does
+    // not. X holds the device in shot on a phone; the bed is background.
+    focal: '32% 0%',
     accent: 'plum',
   },
 ];

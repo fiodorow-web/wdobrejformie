@@ -1,8 +1,22 @@
+/*
+ * One screen, exactly: the sticky bar plus this hero fill the viewport and
+ * nothing more, so the photo is always edge to edge and the first scroll is
+ * what reveals the page.
+ *
+ * dvh rather than vh because on phones vh is the *largest* viewport — it counts
+ * the space under the browser's own toolbars, so a 100vh hero starts life
+ * taller than the screen and hides its own button. dvh tracks the space that is
+ * actually visible. vh stays as the fallback for anything that lacks it.
+ *
+ * min-height guards the short-and-wide case: a phone turned landscape leaves
+ * barely 340px, and a hero that obediently shrank to fit would crush the
+ * headline into the button. There it is allowed to overflow the screen.
+ */
 .hero {
   position: relative;
-  min-height: 520px;
-  height: 84vh;
-  max-height: 900px;
+  height: calc(100vh - var(--nav-height));
+  height: calc(100dvh - var(--nav-height));
+  min-height: 460px;
   overflow: hidden;
   background: var(--neutral-900);
   font-family: var(--font-body);
@@ -21,26 +35,39 @@
   pointer-events: auto;
 }
 
-.image {
-  object-fit: cover;
-}
-
-/*
- * Slow Ken Burns push, only on the visible slide, running for exactly one
- * dwell (--slide-duration, set by the component from its interval prop). The
- * direction alternates: three slides all drifting the same way reads as a
- * glitch rather than as camera movement.
- */
-.kenBurns {
+.photo {
   position: absolute;
   inset: 0;
 }
 
-.slideActive .kenBurns {
+/*
+ * `cover` fills the frame at every window shape without ever distorting — the
+ * photo is scaled, never squashed. What it costs is the overflow, and --focal
+ * is what decides which overflow goes.
+ *
+ * The two axes are never cropped at once: a window wider than 3:2 scales the
+ * photo to the width and trims height only, a narrower one trims width only. So
+ * a single pair covers both cases — the X half steers the phone crop, the Y
+ * half steers the desktop crop, and each is ignored where it does not apply.
+ * Y sits near the top on purpose: the faces in these frames are high up, so the
+ * trim is taken off the floor instead.
+ */
+.image {
+  object-fit: cover;
+  object-position: var(--focal, center);
+}
+
+/*
+ * Slow Ken Burns push, only on the visible slide, running for exactly one dwell
+ * (--slide-duration, set by the component from its interval prop). The
+ * direction alternates: three slides all drifting the same way reads as a
+ * glitch rather than as camera movement.
+ */
+.slideActive .photo {
   animation: wdf-ken-burns var(--slide-duration, 5000ms) linear both;
 }
 
-.slide:nth-child(even).slideActive .kenBurns {
+.slide:nth-child(even).slideActive .photo {
   animation-name: wdf-ken-burns-alt;
 }
 
@@ -62,15 +89,51 @@
   }
 }
 
+/*
+ * Two gradients, because the copy sits bottom-left over photos that are bright
+ * daylight interiors — white walls, white worktops, a white treatment device.
+ * The vertical pass anchors the headline block; the horizontal one darkens the
+ * left third, where every one of these frames puts its empty wall and where
+ * white text would otherwise land on near-white.
+ *
+ * The stops are calculated rather than eyeballed. Against a 250-level backdrop,
+ * white text needs roughly 57% coverage to clear WCAG's 4.5:1, so the ramp is
+ * built to be past that by the height the title starts at. Verified by sampling
+ * the brightest backdrop pixel under each headline box on the rendered page.
+ */
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(20, 23, 15, 0.55) 0%,
-    rgba(20, 23, 15, 0.28) 40%,
-    rgba(20, 23, 15, 0.86) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 23, 15, 0.5) 0%,
+      rgba(20, 23, 15, 0.34) 34%,
+      rgba(20, 23, 15, 0.62) 62%,
+      rgba(20, 23, 15, 0.94) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(20, 23, 15, 0.6) 0%,
+      rgba(20, 23, 15, 0.18) 55%,
+      rgba(20, 23, 15, 0) 100%
+    );
+}
+
+/*
+ * Phones get a gentler overall wash. There is no letterbox to darken and no room
+ * to push the copy aside, so the readability work is done by a gradient tied to
+ * the copy block itself (below) rather than by drowning the whole frame.
+ */
+@media (max-width: 699px) {
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 23, 15, 0.34) 0%,
+      rgba(20, 23, 15, 0.24) 30%,
+      rgba(20, 23, 15, 0.58) 100%
+    );
+  }
 }
 
 .content {
@@ -81,12 +144,50 @@
 }
 
 .copy {
+  position: relative;
   width: 100%;
   padding-bottom: 84px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   align-items: flex-start;
+}
+
+/*
+ * Readability pad that follows the text instead of the frame.
+ *
+ * A fixed gradient cannot work here: the copy block starts anywhere from 17% to
+ * 34% down depending on how many lines the headline wraps to, so any ramp dark
+ * enough for the longest slide flattens the photo on the others. Anchoring it to
+ * .copy means it always covers exactly the text and nothing else, and the rest
+ * of the picture keeps its daylight.
+ *
+ * It bleeds a viewport past both edges — .container keeps the text inset, but
+ * the shading has to reach the screen edges — and the hero's overflow clips it.
+ */
+@media (max-width: 699px) {
+  .copy::before {
+    content: '';
+    position: absolute;
+    inset: -40px -100vw 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 23, 15, 0) 0%,
+      rgba(20, 23, 15, 0.56) 22%,
+      rgba(20, 23, 15, 0.66) 100%
+    );
+  }
+}
+
+/*
+ * Lifts the text above .copy::before. Both are positioned with z-index auto, so
+ * document order decides: the pseudo-element is the first child and paints
+ * first. Doing it this way rather than giving the pseudo z-index:-1 matters —
+ * .hero paints a background and establishes no stacking context, so a negative
+ * z-index would drop the gradient behind that background and out of sight.
+ */
+.copy > * {
+  position: relative;
 }
 
 /* Staggered text rise, per the design system's 120/220/340/460ms cadence. */
@@ -253,7 +354,7 @@
  * the visitor when the next slide is due.
  */
 @media (prefers-reduced-motion: reduce) {
-  .slideActive .kenBurns,
+  .slideActive .photo,
   .slideActive .copy > * {
     animation: none;
   }

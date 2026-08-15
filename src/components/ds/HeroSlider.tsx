@@ -16,6 +16,19 @@ export interface HeroSlide {
   image?: StaticImageData;
   /** Alt text for the photo. Purely decorative slides can pass ''. */
   imageAlt?: string;
+  /**
+   * What the crop must keep, as an `object-position` pair.
+   *
+   * The hero fills the screen at whatever shape the window is, so something
+   * always gets trimmed, and the default centre crop is a coin toss over
+   * whether it is the part that mattered. Each half of the pair does its work
+   * in a different window shape: the X half decides the phone crop, where a
+   * portrait screen shows barely 40% of a landscape frame's width, and the Y
+   * half decides the desktop crop, where a wide window trims top and bottom.
+   * Keep Y low on any frame with a face in it — that takes the trim off the
+   * floor rather than off someone's head.
+   */
+  focal?: string;
   /** green = dietetyka, plum = strefa zabiegowa. */
   accent?: 'green' | 'plum';
 }
@@ -91,15 +104,24 @@ export function HeroSlider({ slides, interval = 5000 }: HeroSliderProps) {
             inert={!active}
           >
             {slide.image && (
-              <div className={styles.kenBurns}>
+              <div className={styles.photo}>
                 <Image
                   src={slide.image}
                   alt={slide.imageAlt ?? ''}
                   fill
                   sizes="100vw"
-                  priority={i === 0}
+                  /*
+                   * `priority` is deprecated as of Next 16; the docs point at
+                   * loading/fetchPriority as the clearer pair. Only the first
+                   * slide is the LCP candidate — the rest have five seconds
+                   * before anyone sees them.
+                   */
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={i === 0 ? 'high' : undefined}
                   placeholder="blur"
+                  quality={82}
                   className={styles.image}
+                  style={{ ['--focal' as string]: slide.focal }}
                 />
               </div>
             )}
