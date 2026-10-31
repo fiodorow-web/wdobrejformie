@@ -54,12 +54,13 @@ export const metadata: Metadata = {
 
 const slides: HeroSlide[] = [
   {
-    eyebrow: 'Poradnia dietetyczna · Węgrów',
-    title: 'Zmień sylwetkę. Zmień nawyki na dobre.',
+    // \u2060 (word joiner) stops a phone from breaking the line after "on-".
+    eyebrow: 'Dietetyka · Odchudzanie · Węgrów i on-\u2060line',
+    title: 'Specjalizujemy się w odchudzaniu. Zmień nawyki na dobre. Zadbaj o swoje zdrowie.',
     subtitle:
-      'Jadłospis układamy z produktów, które już jesz. Bez list zakazów, bez głodzenia się i bez suplementów.',
-    ctaLabel: 'Zapisz się na konsultację',
-    ctaHref: '/kontakt',
+      'Jako jedyni w okolicy zajmujemy się odchudzaniem kompleksowo — konsultacje z dietetykiem, pomiar składu ciała i zabiegi wyszczuplające. Wszystko po to, aby osiągnąć najlepsze efekty i skutecznie zadbać o zdrowie.',
+    ctaLabel: 'Poznaj naszą ofertę',
+    ctaHref: '/oferta',
     image: tloSylwetka,
     imageAlt: 'Wysmuklona sylwetka kobiety obok urządzenia do modelowania ciała w jasnym gabinecie',
     // X: she stands in the right third, so a centred phone crop halves her.
@@ -68,12 +69,12 @@ const slides: HeroSlide[] = [
     accent: 'green',
   },
   {
-    eyebrow: 'Analiza składu ciała',
-    title: 'Ponad 30 parametrów Twojego organizmu.',
+    eyebrow: 'Konsultacje dietetyczne · Indywidualna dieta · Analiza składu ciała',
+    title: 'Skuteczne odchudzanie z dietetykiem',
     subtitle:
-      'Badanie BIA na analizatorze Jawon Medical pokazuje, ile naprawdę ważysz tłuszczem, mięśniami i wodą. Bezboleśnie, w kilkanaście minut.',
-    ctaLabel: 'Umów badanie',
-    ctaHref: '/analiza-skladu-ciala',
+      'Konsultacja, analiza składu ciała i indywidualna dieta dopasowana do Ciebie. Pracujemy kompleksowo — od dokładnej analizy i wyznaczenia celu, po praktyczne zalecenia i dietę dostępną wygodnie w aplikacji. Wszystko pod opieką dietetyka z wykształceniem kierunkowym.',
+    ctaLabel: 'Umów się na konsultację',
+    ctaHref: '/kontakt',
     image: tloDieta,
     imageAlt:
       'Kobieta komponuje talerz sałatki ze świeżych warzyw, obok jadłospis, awokado i owoce',
@@ -83,12 +84,14 @@ const slides: HeroSlide[] = [
     accent: 'green',
   },
   {
-    eyebrow: 'Strefa zabiegowa',
-    title: 'Twoje ciało. Twoje zasady. Twój efekt.',
+    eyebrow: 'Zabiegi wyszczuplające · Modelowanie sylwetki',
+    title: 'Twoja sylwetka może wyglądać lepiej',
+    // No treatment names here: on the home page they mean nothing to someone
+    // who has not had one yet, so the copy names the problem instead.
     subtitle:
-      'Lipolaser, liposukcja kawitacyjna, fale radiowe RF i kriolipoliza — zabiegi, które modelują sylwetkę tam, gdzie dieta działa najwolniej.',
-    ctaLabel: 'Poznaj zabiegi',
-    ctaHref: '/modelowanie-sylwetki',
+      'Uporczywa tkanka tłuszczowa, cellulit, nadmiar wody czy brak jędrności skóry? Dobierzemy zabieg odpowiedni do Twoich potrzeb i celu. Umów bezpłatną konsultację i próbny zabieg — sprawdź, co możemy zrobić dla Twojej sylwetki.',
+    ctaLabel: 'Umów się na zabieg próbny',
+    ctaHref: '/kontakt',
     image: tloStrefa,
     imageAlt:
       'Urządzenie do modelowania sylwetki z głowicami zabiegowymi przy leżance w gabinecie',
