@@ -39,6 +39,22 @@
   max-width: 18ch;
 }
 
+/*
+ * Phones under 375px, below the design system's own breakpoints, get one step
+ * down: at full size the longest single words on the site — "Przeciwwskazania",
+ * "Przygotowanie", "Oczyszczanie" — are wider than the column and push the page
+ * sideways.
+ */
+@media (max-width: 374px) {
+  .h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .pageTitle {
+    font-size: var(--text-3xl);
+  }
+}
+
 .pageLead {
   font-size: var(--text-lg);
   color: var(--color-text-secondary);
@@ -117,6 +133,8 @@
 
 .split {
   display: grid;
+  /* minmax(0, …): an implicit auto column grows to its widest word and overflows a 320px phone. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-10);
   align-items: center;
 }

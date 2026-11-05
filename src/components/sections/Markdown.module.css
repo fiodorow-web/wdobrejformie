@@ -37,6 +37,8 @@
   color: var(--color-cta);
   text-decoration: underline;
   text-underline-offset: 2px;
+  /* The legal pages print bare URLs, some wider than a phone. */
+  overflow-wrap: anywhere;
 }
 
 .markdown a:hover {

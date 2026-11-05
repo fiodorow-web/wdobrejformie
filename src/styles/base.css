@@ -40,6 +40,8 @@ h6 {
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
+  /* Last resort only: a word wider than the column breaks instead of pushing the page sideways. */
+  overflow-wrap: break-word;
 }
 
 p {
