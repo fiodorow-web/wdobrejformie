@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Accordion, Button, Card, ImageSlot, Reveal, Section, Video } from '@/components/ds';
 import { Body, PageHeader, SectionHead, prose } from '@/components/sections/Prose';
-import { treatments } from '@/content/treatments';
+import { treatmentPrice, treatments } from '@/content/treatments';
 import { promotions } from '@/content/promotions';
 import { treatmentFaq } from '@/content/faq';
 import { JsonLd } from '@/components/JsonLd';
@@ -83,7 +83,7 @@ export default function TreatmentsHubPage() {
                   </div>
                   <div>
                     <dt>Cena</dt>
-                    <dd>od {treatment.priceFrom} zł</dd>
+                    <dd>{treatmentPrice(treatment)}</dd>
                   </div>
                 </dl>
               </Link>

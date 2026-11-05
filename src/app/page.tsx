@@ -131,10 +131,10 @@ const serviceIcons = {
 } as const;
 
 const stats = [
-  { value: '10+', label: 'lat prowadzenia poradni' },
+  { value: '13', label: 'lat doświadczenia i 100% indywidualnego podejścia do każdego pacjenta' },
   { value: '30+', label: 'parametrów w badaniu składu ciała' },
-  { value: '19', label: 'opisanych metamorfoz Pacjentów' },
-  { value: '7', label: 'zabiegów w strefie zabiegowej' },
+  { value: '1000+', label: 'konsultacji dietetycznych' },
+  { value: '2', label: 'obszary: dietetyka i modelowanie sylwetki' },
 ];
 
 const marqueeItems = [
@@ -268,7 +268,7 @@ export default function HomePage() {
           eyebrow="Strefa zabiegowa"
           eyebrowTone="plum-light"
           title="Tam, gdzie dieta potrzebuje wsparcia"
-          lead="Siedem zabiegów prowadzonych przez mgr Katarzynę Tyszko, magistra fizjoterapii. Seria zawsze wychodzi taniej niż pojedyncze wizyty."
+          lead="Zabiegi i masaże wykonuje mgr Katarzyna Tyszko — magister fizjoterapii. Wykształcenie kierunkowe, znajomość anatomii i fizjologii człowieka oraz indywidualne podejście pozwalają zadbać o profesjonalizm, bezpieczeństwo i komfort podczas każdej wizyty."
           onDark
           headingId="zabiegi"
         />
@@ -281,7 +281,9 @@ export default function HomePage() {
               >
                 <span className={styles.treatmentName}>{treatment.name}</span>
                 <span className={styles.treatmentTagline}>{treatment.tagline}</span>
-                <span className={styles.treatmentPrice}>od {treatment.priceFrom} zł</span>
+                <span className={styles.treatmentPrice}>
+                  {treatment.priceText ? `Cena ${treatment.priceText}` : `od ${treatment.priceFrom} zł`}
+                </span>
               </Link>
             </Reveal>
           ))}
@@ -362,8 +364,9 @@ export default function HomePage() {
         <Card variant="dark" className={styles.ctaCard}>
           <h2 className={styles.ctaTitle}>Pierwszy krok to badanie składu ciała</h2>
           <p className={styles.ctaText}>
-            Kosztuje 50 zł i trwa kilkanaście minut. Zobaczysz, ile naprawdę ważysz tłuszczem,
-            mięśniami i wodą — i od czego warto zacząć.
+            Kosztuje 50 zł i trwa kilkanaście minut. Poznasz skład swojego ciała — zawartość
+            tkanki tłuszczowej, masy mięśniowej i poziom nawodnienia organizmu. To dobry punkt
+            wyjścia do świadomej pracy nad zdrowiem.
           </p>
           <div className={styles.ctaActions}>
             <Button href="/kontakt" size="lg">

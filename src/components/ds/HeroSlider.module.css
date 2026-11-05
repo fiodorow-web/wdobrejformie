@@ -8,23 +8,28 @@
  * taller than the screen and hides its own button. dvh tracks the space that is
  * actually visible. vh stays as the fallback for anything that lacks it.
  *
- * min-height guards the short-and-wide case: a phone turned landscape leaves
- * barely 340px, and a hero that obediently shrank to fit would crush the
- * headline into the button. There it is allowed to overflow the screen.
+ * The screen is the minimum, not the size. The copy is bottom-anchored, so in
+ * a hero of fixed height a block taller than the window spills upward and the
+ * eyebrow and first headline lines end up under the nav bar — on a phone, on a
+ * 768px laptop. Instead every slide sits in the same grid cell and the tallest
+ * one sizes the hero for all of them, so it grows past the screen only when the
+ * copy needs it and never jumps between slides. The 460px floor keeps a phone
+ * turned landscape from crushing the headline into the button.
  */
 .hero {
   position: relative;
-  height: calc(100vh - var(--nav-height));
-  height: calc(100dvh - var(--nav-height));
-  min-height: 460px;
+  display: grid;
+  min-height: max(460px, calc(100vh - var(--nav-height)));
+  min-height: max(460px, calc(100dvh - var(--nav-height)));
   overflow: hidden;
   background: var(--neutral-900);
   font-family: var(--font-body);
 }
 
 .slide {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  grid-area: 1 / 1;
+  display: flex;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1100ms var(--ease-standard);
@@ -136,9 +141,10 @@
   }
 }
 
+/* In flow, so the copy's height reaches the grid and can size the hero. */
 .content {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: flex-end;
 }
@@ -146,6 +152,8 @@
 .copy {
   position: relative;
   width: 100%;
+  /* Only matters once the copy outgrows the screen: keeps the eyebrow off the nav. */
+  padding-top: var(--space-12);
   padding-bottom: 84px;
   display: flex;
   flex-direction: column;
@@ -262,6 +270,21 @@
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   max-width: 46ch;
+}
+
+/*
+ * One step down on phones and in short windows — a 768px laptop loses a good
+ * 120px to the browser's own toolbars — so a three-sentence headline still
+ * leaves the button on the first screen.
+ */
+@media (max-width: 699px), (max-height: 720px) {
+  .title {
+    font-size: var(--text-3xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
 }
 
 /* ---- Slide picker ---- */

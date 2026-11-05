@@ -45,6 +45,11 @@ export interface Treatment {
   durationLabel: string;
   /** Entry price in PLN. */
   priceFrom: number;
+  /**
+   * Single-visit price as the client words it, shown in place of "od X zł"
+   * wherever the treatment's price appears. Treatments without one keep "od".
+   */
+  priceText?: string;
   priceNote?: string;
   /** Paragraphs of body copy. */
   body: string[];
@@ -69,6 +74,7 @@ export const treatments: Treatment[] = [
     videoLabel: 'Płytki lipolasera przymocowane pasami do brzucha pacjentki w trakcie zabiegu',
     durationLabel: '30 minut',
     priceFrom: 140,
+    priceText: '140 zł/pojedynczy zabieg (w\u00a0serii\u00a0taniej)',
     seriesHighlight: 'od 80 zł za zabieg w serii od 8 zabiegów',
     body: [
       'Lipolaser pozwala w szybki, kontrolowany i całkowicie bezbolesny sposób zredukować lokalne nagromadzenie tkanki tłuszczowej i wymodelować sylwetkę.',
@@ -91,6 +97,7 @@ export const treatments: Treatment[] = [
       'Mgr Katarzyna Tyszko prowadzi zabieg na brzuchu pacjentki głowicą zabiegową w gabinecie w Węgrowie',
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
+    priceText: '240 zł/pojedynczy zabieg (w\u00a0serii\u00a0taniej)',
     priceNote: '150 zł za ramiona lub łydki, 240 zł za uda, brzuch z boczkami albo plecy',
     seriesHighlight: 'od 100 zł za zabieg w serii od 8 zabiegów',
     body: [
@@ -117,6 +124,7 @@ export const treatments: Treatment[] = [
     photoAlt: 'Wielobiegunowa głowica fal radiowych RF prowadzona po skórze podczas zabiegu',
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
+    priceText: 'od 150 do 240 zł/pojedynczy zabieg (w\u00a0serii\u00a0taniej)',
     priceNote:
       '150 zł za ramiona lub łydki, 240 zł za uda, brzuch z boczkami albo plecy, 180 zł za partie twarzy z ampułką liftingującą',
     seriesHighlight: 'od 100 zł za zabieg w serii od 8 zabiegów',
@@ -148,6 +156,7 @@ export const treatments: Treatment[] = [
       'Dwie głowice kriolipolizy z wyświetlaczami przymocowane do brzucha pacjentki w trakcie zabiegu',
     durationLabel: '30 minut / 1 przyłożenie głowicy',
     priceFrom: 240,
+    priceText: '300 zł/pojedynczy zabieg (w\u00a0serii\u00a0taniej)',
     seriesHighlight: '480 zł za serię 3 zabiegów, 900 zł za serię 6 zabiegów',
     body: [
       'Kriolipoliza redukuje tkankę tłuszczową przez zamrażanie niechcianych komórek tłuszczowych, co prowadzi do ich rozpadu (lipolizy).',
@@ -231,6 +240,11 @@ export const treatments: Treatment[] = [
     ],
   },
 ];
+
+/** The price line for a treatment: the client's wording, or "od X zł". */
+export function treatmentPrice(treatment: Treatment): string {
+  return treatment.priceText ?? `od ${treatment.priceFrom} zł`;
+}
 
 export function getTreatment(slug: string): Treatment | undefined {
   return treatments.find((treatment) => treatment.slug === slug);

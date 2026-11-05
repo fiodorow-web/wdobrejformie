@@ -36,7 +36,7 @@ export const generalFaq: FaqEntry[] = [
   },
   {
     q: 'Jak dostanę swój jadłospis?',
-    a: 'Plany żywieniowe i materiały dodatkowe udostępniamy przez panel pacjenta. Masz do nich dostęp przez cały okres współpracy i również po jej zakończeniu.',
+    a: 'Jadłospis jest udostępniany w aplikacji na telefonie oraz w wersji do druku.',
   },
 ];
 

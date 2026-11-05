@@ -46,17 +46,32 @@ export interface HeroSliderProps {
   interval?: number;
 }
 
+/**
+ * Focus that came from the keyboard, not the focus a click leaves behind on a
+ * button. Pausing on any focus froze the slider for good: clicking play left
+ * focus on the play button, so it stayed paused until the visitor clicked
+ * somewhere else. Browsers without :focus-visible count every focus.
+ */
+function isKeyboardFocus(target: EventTarget): boolean {
+  try {
+    return target instanceof Element && target.matches(':focus-visible');
+  } catch {
+    return true;
+  }
+}
+
 export function HeroSlider({ slides, interval = 5000 }: HeroSliderProps) {
   const [index, setIndex] = useState(0);
-  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const count = slides.length;
 
-  // Hover/focus covers mouse and keyboard; the explicit button is what gives
-  // touch visitors a way to stop it, which WCAG 2.2.2 requires and hovering
-  // cannot provide.
-  const paused = hovered || userPaused;
+  // Keyboard focus holds it still; the explicit button is the way to stop it
+  // for everyone, which is what WCAG 2.2.2 requires. Hover deliberately does
+  // not pause it: the hero fills the first screen, so on a desktop the cursor
+  // almost always rests on it and the slides never moved.
+  const paused = focused || userPaused;
 
   useEffect(() => {
     /*
@@ -74,8 +89,12 @@ export function HeroSlider({ slides, interval = 5000 }: HeroSliderProps) {
   }, [index, paused, count, interval]);
 
   const goTo = (next: number) => {
+    const target = ((next % count) + count) % count;
+    // Clicking the slide already showing must leave its timer alone: the index
+    // would not change, the effect would not re-run, and autoplay would stop.
+    if (target === index) return;
     if (timer.current) clearTimeout(timer.current);
-    setIndex(((next % count) + count) % count);
+    setIndex(target);
   };
 
   return (
@@ -83,10 +102,8 @@ export function HeroSlider({ slides, interval = 5000 }: HeroSliderProps) {
       className={styles.hero}
       aria-roledescription="carousel"
       aria-label="Wyróżnione usługi"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
-      onBlurCapture={() => setHovered(false)}
+      onFocusCapture={(event) => setFocused(isKeyboardFocus(event.target))}
+      onBlurCapture={() => setFocused(false)}
       // Drives the Ken Burns push, so the image travels for exactly as long as
       // the slide is up instead of being cut off part-way.
       style={{ ['--slide-duration' as string]: `${interval}ms` }}

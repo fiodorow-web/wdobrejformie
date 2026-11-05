@@ -23,7 +23,7 @@ export const serviceSummaries: ServiceSummary[] = [
     href: '/konsultacje',
     description:
       'Wywiad żywieniowo-zdrowotny, badanie składu ciała i wspólne ustalenie celu. Także przy schorzeniach i dietach eliminacyjnych.',
-    priceFrom: 'od 120 zł',
+    priceFrom: 'Tylko 140 zł',
     line: 'dietetyka',
     icon: 'stethoscope',
   },
@@ -32,7 +32,7 @@ export const serviceSummaries: ServiceSummary[] = [
     href: '/plany-zywieniowe',
     description:
       '7-dniowy jadłospis z gramaturą, przepisami i listą zakupów na cały tydzień. Bez suplementów, z produktów dostępnych w każdym sklepie.',
-    priceFrom: 'od 160 zł',
+    priceFrom: 'Tylko 180 zł',
     line: 'dietetyka',
     icon: 'clipboard-list',
   },

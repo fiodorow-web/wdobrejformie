@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { Button, Card, ImageSlot, Reveal, Section, Video } from '@/components/ds';
 import { Body, CheckList, PageHeader, SectionHead, prose } from '@/components/sections/Prose';
-import { getTreatment, treatments } from '@/content/treatments';
+import { getTreatment, treatmentPrice, treatments } from '@/content/treatments';
 import { getAllPosts } from '@/lib/blog';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbJsonLd, serviceJsonLd } from '@/lib/jsonld';
@@ -132,7 +132,7 @@ export default async function TreatmentPage({ params }: { params: Promise<Params
               </div>
               <div className={styles.factRow}>
                 <dt>Cena</dt>
-                <dd className={styles.price}>od {treatment.priceFrom} zł</dd>
+                <dd className={styles.price}>{treatmentPrice(treatment)}</dd>
               </div>
               {treatment.seriesHighlight && (
                 <div className={styles.factRow}>
@@ -177,7 +177,7 @@ export default async function TreatmentPage({ params }: { params: Promise<Params
               <dl className={styles.cardMeta}>
                 <div>
                   <dt>Cena</dt>
-                  <dd>od {other.priceFrom} zł</dd>
+                  <dd>{treatmentPrice(other)}</dd>
                 </div>
               </dl>
             </Link>

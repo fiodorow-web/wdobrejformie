@@ -1,7 +1,8 @@
 .stats {
   display: grid;
   gap: var(--space-6);
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  /* Always 2×2: four tiles in auto-fit columns broke into a 3 + 1 row on desktop. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: var(--space-10);
 }
 
@@ -82,6 +83,8 @@
   display: grid;
   gap: var(--space-8);
   counter-reset: step;
+  /* The 01–04 counter below is the numbering; the browser's own "1." doubled it. */
+  list-style: none;
 }
 
 @media (min-width: 720px) {

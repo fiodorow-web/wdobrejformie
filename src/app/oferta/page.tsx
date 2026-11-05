@@ -5,7 +5,7 @@ import { Button, Card, ImageSlot, Reveal, Section } from '@/components/ds';
 import { PageHeader, SectionHead, prose } from '@/components/sections/Prose';
 import { SIZE_THIRD } from '@/lib/image-sizes';
 import { serviceSummaries } from '@/content/services';
-import { treatments } from '@/content/treatments';
+import { treatmentPrice, treatments } from '@/content/treatments';
 import styles from '@/components/sections/Home.module.css';
 
 import konsultacja from '@/assets/photos/konsultacja-dietetyczna-wegrow.webp';
@@ -113,7 +113,7 @@ export default function OfferPage() {
               >
                 <span className={styles.treatmentName}>{treatment.name}</span>
                 <span className={styles.treatmentTagline}>{treatment.tagline}</span>
-                <span className={styles.treatmentPrice}>od {treatment.priceFrom} zł</span>
+                <span className={styles.treatmentPrice}>{treatmentPrice(treatment)}</span>
               </Link>
             </Reveal>
           ))}
