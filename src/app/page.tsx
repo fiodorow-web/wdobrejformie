@@ -334,7 +334,7 @@ export default function HomePage() {
         <SectionHead
           eyebrow="Metamorfozy"
           title="Efekty naszych Pacjentów"
-          lead="Dziesięć metamorfoz — zdjęcia przed i po oraz wyniki pomiarów."
+          lead="Dwadzieścia metamorfoz — zdjęcia przed i po oraz wyniki pomiarów."
           headingId="metamorfozy"
         />
         <div className={prose.grid2}>

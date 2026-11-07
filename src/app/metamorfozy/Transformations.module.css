@@ -71,6 +71,8 @@
 }
 
 .statRow dt {
+  /* Basis 0: the label gives way first, so a short value never breaks mid-figure. */
+  flex: 1 1 0;
   color: var(--color-text-muted);
 }
 
@@ -78,7 +80,8 @@
   margin: 0;
   font-weight: var(--fw-bold);
   color: var(--color-text-primary);
-  white-space: nowrap;
+  /* Worded results ("płytsze, jaśniejsze, mniej widoczne") must wrap on a phone. */
+  text-align: right;
 }
 
 .description {
@@ -90,6 +93,35 @@
   line-height: var(--leading-relaxed);
   border-left: 2px solid var(--color-accent-tint-strong);
   padding-left: var(--space-5);
+}
+
+/* ---- "Chcesz zobaczyć więcej?" — links to the poradnia's Instagram and Facebook ---- */
+.more {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  padding: var(--space-8);
+}
+
+.moreTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-text-primary);
+}
+
+.moreText {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 56ch;
+}
+
+.moreActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
 }
 
 .copyright {

@@ -33,6 +33,25 @@ import barbaraPrzod from '@/assets/photos/metamorfoza-barbara-przod.webp';
 import pacjentkaDietaBok from '@/assets/photos/metamorfoza-pacjentka-dieta-bok.webp';
 import pacjentkaDietaPrzod from '@/assets/photos/metamorfoza-pacjentka-dieta-przod.webp';
 import pacjentkaZabiegiBrzuch from '@/assets/photos/metamorfoza-pacjentka-zabiegi-brzuch.webp';
+// Older stories (11–20), from earlier posts.
+import marzenaPrzod from '@/assets/photos/metamorfoza-marzena-przod.webp';
+import marzenaBok from '@/assets/photos/metamorfoza-marzena-bok.webp';
+import andrzejBok from '@/assets/photos/metamorfoza-andrzej-bok.webp';
+import andrzejPrzod from '@/assets/photos/metamorfoza-andrzej-przod.webp';
+import dorotaBok from '@/assets/photos/metamorfoza-dorota-bok.webp';
+import dorotaPrzod from '@/assets/photos/metamorfoza-dorota-przod.webp';
+import anetaPrzod from '@/assets/photos/metamorfoza-aneta-przod.webp';
+import anetaBok from '@/assets/photos/metamorfoza-aneta-bok.webp';
+import pacjentRozstepyBok from '@/assets/photos/metamorfoza-pacjent-rozstepy-bok.webp';
+import pacjentRozstepyBok2 from '@/assets/photos/metamorfoza-pacjent-rozstepy-bok-2.webp';
+import martynaBok from '@/assets/photos/metamorfoza-martyna-bok.webp';
+import martynaPrzod from '@/assets/photos/metamorfoza-martyna-przod.webp';
+import joannaBok from '@/assets/photos/metamorfoza-joanna-bok.webp';
+import joannaPrzod from '@/assets/photos/metamorfoza-joanna-przod.webp';
+import robertBok from '@/assets/photos/metamorfoza-robert-bok.webp';
+import martaBok from '@/assets/photos/metamorfoza-marta-bok.webp';
+import martaPrzod from '@/assets/photos/metamorfoza-marta-przod.webp';
+import pacjentkaKriolipolizaBrzuch from '@/assets/photos/metamorfoza-pacjentka-kriolipoliza-brzuch.webp';
 
 export interface TransformationPhoto {
   src: StaticImageData;
@@ -309,6 +328,256 @@ export const transformations: Transformation[] = [
       {
         src: pacjentkaZabiegiBrzuch,
         alt: 'Brzuch pacjentki przed i po zabiegach — ujęcie z przodu i z boku',
+      },
+    ],
+  },
+
+  /* ---- Older stories (11–20) ---- */
+  {
+    slug: 'marzena',
+    name: 'Marzena',
+    headline: '−15,4 kg',
+    headlineNote: '5 miesięcy',
+    duration: '5 miesięcy',
+    results: [
+      { label: 'Masa ciała', value: '−15,4 kg' },
+      { label: 'Tkanka tłuszczowa', value: '−9,5 kg' },
+      { label: 'Tłuszcz trzewny', value: '−39 cm²' },
+      { label: 'Obwód brzucha', value: '−11 cm' },
+      { label: 'Rozmiar odzieży', value: '−3 rozmiary' },
+      { label: 'Wiek metaboliczny', value: '−3 lata' },
+    ],
+    description: [
+      '„Chciałam schudnąć 10 kg… schudłam ponad 15.”',
+      'Pani Marzena trafiła do mojego gabinetu po wielu samodzielnych próbach odchudzania. Ograniczała pieczywo, rezygnowała z ziemniaków, jadła coraz mniej, a efekty nie były zadowalające.',
+      'W wakacje zaczęłyśmy współpracę z celem: –10 kg.',
+      'Po drodze pojawił się ogromny stres i pobyt dziecka w szpitalu — sytuacje, które często kończą dietę. Mimo to Pani Marzena nie zrezygnowała. Działałyśmy elastycznie, bez zakazów i bez głodówek.',
+      'Lepsze samopoczucie i większa pewność siebie. Cel został nie tylko osiągnięty — został przekroczony.',
+    ],
+    photos: [
+      { src: marzenaPrzod, alt: 'Pani Marzena przed i po — sylwetka z przodu' },
+      { src: marzenaBok, alt: 'Pani Marzena przed i po — sylwetka z boku' },
+    ],
+  },
+  {
+    slug: 'andrzej',
+    name: 'Andrzej',
+    headline: '−34 kg',
+    headlineNote: 'marzec–listopad',
+    duration: 'od marca do listopada',
+    results: [
+      { label: 'Masa ciała', value: 'ze 119 kg do 84,8 kg' },
+      { label: 'Tkanka tłuszczowa', value: '−20 kg' },
+      { label: 'Tłuszcz trzewny', value: '−155 cm²' },
+      { label: 'Wiek metaboliczny na początku', value: '+10 lat' },
+      { label: 'Wiek metaboliczny po stabilizacji', value: '−7 lat' },
+    ],
+    description: [
+      'Metamorfoza Roku 2025.',
+      'Pan Andrzej zrobił coś naprawdę imponującego. Od marca do listopada przeszedł ogromną przemianę.',
+      'Co ważne – to wszystko mimo bardzo trudnych warunków: praca w ochronie, nocne zmiany, nieregularny tryb życia, praca mocno ograniczająca aktywność fizyczną.',
+      'To najlepszy dowód, że nawet przy niesprzyjających okolicznościach da się osiągnąć świetne efekty, jeśli jest konsekwencja, plan i cierpliwość.',
+      'Brawo Panie Andrzeju – ogromna inspiracja na 2026 rok!',
+    ],
+    photos: [
+      { src: andrzejBok, alt: 'Pan Andrzej przed, w trakcie i po — sylwetka z boku' },
+      { src: andrzejPrzod, alt: 'Pan Andrzej przed, w trakcie i po — sylwetka z przodu' },
+    ],
+  },
+  {
+    slug: 'dorota',
+    name: 'Dorota',
+    headline: '−15 kg',
+    headlineNote: 'niecałe 5 miesięcy',
+    duration: 'niecałe 5 miesięcy',
+    results: [
+      { label: 'Masa ciała', value: '−15 kg' },
+      { label: 'Tkanka tłuszczowa', value: '−11 kg' },
+      { label: 'Tłuszcz trzewny', value: '−85 cm² (−3 poziomy)' },
+      { label: 'Obwód', value: 'ponad −10 cm' },
+      { label: 'Wiek metaboliczny', value: '−4 lata' },
+    ],
+    description: [
+      'Pani Dorota na początku sama nie wierzyła, że może schudnąć, jednak zaufała nam i dzielnie wdrażała kolejne zalecenia żywieniowe. Drogę do sukcesu utrudniały jej schorzenia takie jak cukrzyca i nadciśnienie, ale nie powstrzymało jej to przed osiągnięciem fantastycznego efektu. Gratulujemy!',
+    ],
+    photos: [
+      { src: dorotaBok, alt: 'Pani Dorota przed i po — sylwetka z boku' },
+      { src: dorotaPrzod, alt: 'Pani Dorota przed i po — sylwetka z przodu' },
+    ],
+  },
+  {
+    slug: 'aneta',
+    name: 'Aneta',
+    headline: '−6,5 kg',
+    headlineNote: '4 miesiące',
+    duration: '4 miesiące',
+    results: [
+      { label: 'Masa ciała', value: '−6,5 kg' },
+      { label: 'Tkanka tłuszczowa', value: 'ponad −5 kg' },
+      { label: 'Tłuszcz trzewny', value: '−23 cm² (−4 poziomy)' },
+      { label: 'Typ otłuszczenia', value: 'teraz podskórny' },
+      { label: 'Obwód', value: 'ponad −7 cm' },
+      { label: 'Wiek metaboliczny', value: '2 lata poniżej rzeczywistego' },
+    ],
+    description: [
+      // The post says −6,5 kg in its list and 6,4 kg here; the list figure is used throughout.
+      'Czasem trudno jest zrzucić kilka kilogramów, będąc w górnej granicy normy wagowej. Właśnie taka delikatna redukcja była celem naszej Pacjentki. Pani Aneta zgłosiła się do poradni, aby poczuć się lepiej we własnym ciele. Współpraca przyniosła tylko i aż 6,5 kg spadku masy ciała.',
+      'Dzięki temu ilość tkanki tłuszczowej w tym momencie nie przekracza już normy, a wiek metaboliczny Pacjentki jest o 2 lata niższy względem wieku rzeczywistego. Gratulacje!',
+    ],
+    photos: [
+      { src: anetaPrzod, alt: 'Pani Aneta przed i po — sylwetka z przodu' },
+      { src: anetaBok, alt: 'Pani Aneta przed i po — sylwetka z boku' },
+    ],
+  },
+  {
+    slug: 'pacjent-rozstepy',
+    name: 'Pacjent',
+    headline: 'Mniej rozstępów',
+    headlineNote: 'liposukcja kawitacyjna',
+    results: [
+      { label: 'Zabiegi', value: 'seria liposukcji kawitacyjnej' },
+      { label: 'Skóra', value: 'ujędrniona' },
+      { label: 'Rozstępy', value: 'płytsze, jaśniejsze, mniej widoczne' },
+      { label: 'Brzuch i boki', value: 'lepsza struktura skóry' },
+    ],
+    description: [
+      'Metamorfoza rozstępów.',
+      'Po serii zabiegów liposukcji kawitacyjnej, oprócz wyszczuplenia sylwetki, u pacjenta zauważalne jest wyraźne zmniejszenie rozstępów, które były efektem wcześniejszych wahań wagi i napięcia skóry.',
+      'W naszej strefie zabiegowej dbamy o potrzeby zarówno kobiet, jak i mężczyzn – każdy zasługuje na profesjonalną pielęgnację i świetne samopoczucie.',
+    ],
+    photos: [
+      {
+        src: pacjentRozstepyBok,
+        alt: 'Brzuch pacjenta z boku przed i po serii liposukcji kawitacyjnej — rozstępy',
+      },
+      {
+        src: pacjentRozstepyBok2,
+        alt: 'Brzuch i bok pacjenta przed i po serii liposukcji kawitacyjnej — drugie ujęcie',
+      },
+    ],
+  },
+  {
+    slug: 'martyna',
+    name: 'Martyna',
+    headline: 'prawie −14 kg',
+    headlineNote: '4 miesiące',
+    duration: '4 miesiące',
+    results: [
+      { label: 'Masa ciała', value: 'prawie −14 kg' },
+      { label: 'Tkanka tłuszczowa', value: 'ok. −9 kg' },
+      { label: 'Tłuszcz trzewny', value: '−41 cm² (−4 poziomy)' },
+      { label: 'Talia', value: '−7 cm' },
+      { label: 'Rozmiar odzieży', value: '−2 rozmiary' },
+      { label: 'Wiek metaboliczny', value: '−2 lata' },
+      { label: 'Wyniki badań', value: 'niższe TSH i insulina' },
+    ],
+    description: [
+      'Pani Martyna na co dzień zmaga się z insulinoopornością i niedoczynnością tarczycy. Dodatkowo pracuje na dwie zmiany i codziennie dojeżdża do pracy do innego miasta, co zdecydowanie utrudnia proces odchudzania. Mimo tych wyzwań nasza Pacjentka udowodniła, że determinacja i konsekwencja przynoszą efekty! Dzięki wytrwałości osiągnęła imponujące rezultaty – w 4 miesiące, w tym w okresie świątecznym i noworocznym.',
+      'Wielkie gratulacje!',
+      'Teraz czas na kolejny krok – modelowanie sylwetki i podkreślenie uzyskanych efektów dzięki zabiegom! Wspólnie zadbamy o jędrne ciało i pewność siebie, by zdążyć jeszcze przed wakacjami!',
+      'Ty też możesz osiągnąć swój cel – skontaktuj się z nami już dziś!',
+    ],
+    photos: [
+      { src: martynaBok, alt: 'Pani Martyna przed i po — sylwetka z boku' },
+      { src: martynaPrzod, alt: 'Pani Martyna przed i po — sylwetka z przodu' },
+    ],
+  },
+  {
+    slug: 'joanna',
+    name: 'Joanna',
+    headline: '−10 kg',
+    headlineNote: '6 miesięcy',
+    duration: '6 miesięcy',
+    results: [
+      { label: 'Masa ciała', value: '−10 kg' },
+      { label: 'Tkanka tłuszczowa', value: '−6 kg' },
+      { label: 'Tłuszcz trzewny', value: '−25 cm²' },
+      { label: 'Grubość warstwy tłuszczu', value: '−3 poziomy' },
+    ],
+    description: [
+      'Nasza dwunastoletnia Pacjentka pokazała, że nigdy nie jest za wcześnie na wprowadzenie zdrowych nawyków żywieniowych.',
+      'Joasia może być wzorem dla wszystkich młodszych pacjentów i nie tylko!',
+    ],
+    photos: [
+      {
+        src: joannaBok,
+        alt: 'Joanna przed i po — przed na analizatorze składu ciała, sylwetka z boku',
+      },
+      {
+        src: joannaPrzod,
+        alt: 'Joanna przed i po — przed tyłem na analizatorze, po z przodu',
+      },
+    ],
+  },
+  {
+    slug: 'robert',
+    name: 'Robert',
+    headline: '−14 kg',
+    results: [
+      { label: 'Masa ciała', value: '−14 kg' },
+      { label: 'Tkanka tłuszczowa', value: 'prawie −8 kg' },
+      { label: 'Tłuszcz trzewny', value: '−44 cm²' },
+      { label: 'Grubość warstwy tłuszczu', value: '−2 poziomy' },
+      { label: 'Pas', value: '−10 cm' },
+      { label: 'Rozmiar odzieży', value: 'ponad −2 rozmiary' },
+      { label: 'Wiek metaboliczny', value: '−2 lata' },
+    ],
+    description: [
+      'Po miesiącach pełnych wzlotów i upadków mamy to!',
+      'Do dwóch razy sztuka! Okres wakacyjny nie sprzyjał odchudzaniu i trzymaniu się zaleceń, jednak Pan Robert nie poddał się i ponownie zmotywował się po wakacjach do działania. Cel został osiągnięty, w dwóch etapach. Brawo!',
+      'Wszystkich, którzy chcieliby osiągnąć takie rezultaty, zapraszamy do kontaktu.',
+    ],
+    photos: [
+      {
+        src: robertBok,
+        alt: 'Pan Robert przed i po — przed na analizatorze składu ciała, sylwetka z boku',
+      },
+    ],
+  },
+  {
+    slug: 'marta',
+    name: 'Marta',
+    headline: '−10,4 kg',
+    headlineNote: '3 miesiące',
+    duration: '3 miesiące',
+    results: [
+      { label: 'Masa ciała', value: '−10,4 kg' },
+      { label: 'Tkanka tłuszczowa', value: '−7,7 kg' },
+      { label: 'Tłuszcz trzewny', value: '−72 cm²' },
+      { label: 'Pas', value: '−9 cm' },
+      { label: 'Rozmiar odzieży', value: '−2 rozmiary' },
+      { label: 'Wiek metaboliczny', value: '−3 lata' },
+    ],
+    description: [
+      'Pani Marta to kolejna Pacjentka, która udowodniła, że w każdym wieku można schudnąć i zawalczyć o swoje zdrowie. Ograniczenia są tylko w głowie!',
+      'Mniejsze otłuszczenie trzewne to także dużo niższe ryzyko rozwoju schorzeń dietozależnych.',
+      'Ciekawostka: teraz, po odchudzaniu, Pacjentka wchodzi po schodach do naszej poradni bez zadyszki.',
+      'Gratulujemy!',
+    ],
+    photos: [
+      { src: martaBok, alt: 'Pani Marta przed i po — sylwetka z boku' },
+      { src: martaPrzod, alt: 'Pani Marta przed i po — sylwetka z przodu' },
+    ],
+  },
+  {
+    slug: 'pacjentka-kriolipoliza',
+    name: 'Pacjentka',
+    headline: '4 zabiegi',
+    headlineNote: 'kriolipoliza',
+    results: [
+      { label: 'Zabiegi', value: '4 × kriolipoliza' },
+      { label: 'Czas wizyty', value: '60 min' },
+    ],
+    description: [
+      'Uporczywy brzuszek? Wystające boczki?',
+      'Mamy na to radę! Kriolipoliza to rewolucyjna metoda modelowania sylwetki poprzez „wymrażanie” tkanki tłuszczowej. Prezentujemy Państwu efekt tylko 4 zabiegów — 4 wizyty trwające po 60 min w naszej Strefie Modelowania Sylwetki.',
+      'Jeżeli Tobie również marzy się płaski i jędrny brzuch, skontaktuj się z nami i umów się na wizytę.',
+      'Zapraszamy!',
+    ],
+    photos: [
+      {
+        src: pacjentkaKriolipolizaBrzuch,
+        alt: 'Brzuch pacjentki z boku — przed i po 4 zabiegach kriolipolizy',
       },
     ],
   },

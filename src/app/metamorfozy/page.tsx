@@ -1,7 +1,17 @@
 import type { Metadata } from 'next';
-import { Button, Card, ImageSlot, Reveal, Section, StatBadge } from '@/components/ds';
+import {
+  Button,
+  Card,
+  FacebookIcon,
+  ImageSlot,
+  InstagramIcon,
+  Reveal,
+  Section,
+  StatBadge,
+} from '@/components/ds';
 import { PageHeader, prose } from '@/components/sections/Prose';
 import { SIZE_PORTRAIT } from '@/lib/image-sizes';
+import { site } from '@/content/site';
 import { transformations } from '@/content/transformations';
 import styles from './Transformations.module.css';
 import homeStyles from '@/components/sections/Home.module.css';
@@ -9,7 +19,7 @@ import homeStyles from '@/components/sections/Home.module.css';
 export const metadata: Metadata = {
   title: 'Metamorfozy Pacjentów',
   description:
-    'Dziesięć metamorfoz Pacjentów poradni W Dobrej Formie — od −9,5 do −29 kilogramów. Zdjęcia przed i po, wyniki pomiarów składu ciała i czas współpracy.',
+    'Dwadzieścia metamorfoz Pacjentów poradni W Dobrej Formie — od −6,5 do −34 kilogramów. Zdjęcia przed i po, wyniki pomiarów składu ciała i czas współpracy.',
   alternates: { canonical: '/metamorfozy' },
 };
 
@@ -80,6 +90,26 @@ export default function TransformationsPage() {
             </li>
           ))}
         </ol>
+
+        <Card variant="tint" className={styles.more}>
+          <h2 className={styles.moreTitle}>Chcesz zobaczyć więcej?</h2>
+          <p className={styles.moreText}>
+            Kolejne metamorfozy i efekty naszych Pacjentów pokazujemy na bieżąco na Instagramie
+            i Facebooku. Wejdź do nas!
+          </p>
+          <div className={styles.moreActions}>
+            <Button href={site.social.instagram} variant="secondary">
+              <InstagramIcon />
+              Instagram
+              <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+            </Button>
+            <Button href={site.social.facebook} variant="secondary">
+              <FacebookIcon />
+              Facebook
+              <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+            </Button>
+          </div>
+        </Card>
 
         <p className={styles.copyright}>
           Zamieszczone zdjęcia są własnością poradni dietetycznej W Dobrej Formie. Publikowanie,

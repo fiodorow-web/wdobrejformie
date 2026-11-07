@@ -60,6 +60,12 @@ export const site = {
    */
   patientZoneUrl: 'https://pacjent.dietetykpro.pl/zaloguj',
 
+  /** The poradnia's own profiles, supplied by the client (tracking query stripped). */
+  social: {
+    instagram: 'https://www.instagram.com/w_dobrej_formie/',
+    facebook: 'https://www.facebook.com/wdobrejformie.net/',
+  },
+
   /** Response promise made on the current /kontakt/ page for online enquiries. */
   onlineReplyPromise: 'W ciągu 24 godzin otrzymasz od nas wiadomość zwrotną.',
 } as const;

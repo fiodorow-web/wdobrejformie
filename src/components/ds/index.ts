@@ -66,3 +66,5 @@ export type { VideoProps } from './Video';
 
 export { Section } from './Section';
 export type { SectionProps, SectionTone } from './Section';
+
+export { InstagramIcon, FacebookIcon } from './BrandIcons';
