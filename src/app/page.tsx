@@ -149,7 +149,7 @@ const marqueeItems = [
 ];
 
 /** Two headline stories for the home page; the rest live on /metamorfozy. */
-const featuredStories = transformations.filter((story) => ['emil', 'olga'].includes(story.slug));
+const featuredStories = transformations.filter((story) => ['pawel', 'hanna'].includes(story.slug));
 
 export default function HomePage() {
   const magdalena = team[0];
@@ -333,17 +333,18 @@ export default function HomePage() {
       <Section tone="surface" aria-labelledby="metamorfozy">
         <SectionHead
           eyebrow="Metamorfozy"
-          title="Efekty, które opisali sami Pacjenci"
-          lead="Dziewiętnaście historii — od pierwszego ważenia do wagi, przy której udało się zostać."
+          title="Efekty naszych Pacjentów"
+          lead="Dziesięć metamorfoz — zdjęcia przed i po oraz wyniki pomiarów."
           headingId="metamorfozy"
         />
         <div className={prose.grid2}>
           {featuredStories.map((story, index) => (
             <Reveal key={story.slug} variant="zoom" delay={index * 90}>
             <TestimonialCard
-              name={`${story.name}, ${story.age}`}
-              stat={`−${story.lossLabel} kg w ${story.duration}`}
-              quote={story.quote[story.quote.length - 1] ?? story.quote[0]}
+              name={story.name}
+              stat={story.duration ? `${story.headline} w ${story.duration}` : story.headline}
+              quote={story.teaser ?? story.description[0]}
+              quoted={false}
             />
             </Reveal>
           ))}

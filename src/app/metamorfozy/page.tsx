@@ -9,7 +9,7 @@ import homeStyles from '@/components/sections/Home.module.css';
 export const metadata: Metadata = {
   title: 'Metamorfozy Pacjentów',
   description:
-    'Dziewiętnaście historii Pacjentów poradni W Dobrej Formie — od −5,5 do −32 kilogramów. Wagi początkowe i końcowe, czas współpracy i relacje własnymi słowami.',
+    'Dziesięć metamorfoz Pacjentów poradni W Dobrej Formie — od −9,5 do −29 kilogramów. Zdjęcia przed i po, wyniki pomiarów składu ciała i czas współpracy.',
   alternates: { canonical: '/metamorfozy' },
 };
 
@@ -18,8 +18,8 @@ export default function TransformationsPage() {
     <>
       <PageHeader
         eyebrow="Metamorfozy"
-        title="Historie, które napisali sami Pacjenci"
-        lead="Każda z nich zaczęła się od jednego pomiaru na analizatorze. Dane pochodzą z momentu rozpoczęcia współpracy."
+        title="Efekty naszych Pacjentów"
+        lead="Zdjęcia przed i po oraz wyniki pomiarów — po diecie, zabiegach modelowania sylwetki albo połączeniu obu."
       />
 
       <Section tone="surface" tight>
@@ -28,71 +28,52 @@ export default function TransformationsPage() {
             <li key={story.slug} id={story.slug} className={styles.item}>
               <Reveal delay={index % 2 === 0 ? 0 : 80}>
                 <Card variant="default" className={styles.card}>
-                  <div className={styles.frame}>
-                    <ImageSlot
-                      label={
-                        story.photoAlt
-                          ? `${story.photoAlt} — metamorfoza ${story.name}, −${story.lossLabel} kg`
-                          : `Metamorfoza: ${story.name}, −${story.lossLabel} kg`
-                      }
-                      src={story.photo}
-                      /*
-                       * Before/after pairs are collages — cropping them to a
-                       * fixed frame slices the "po" panel off the side, which
-                       * is the half that matters. Each photo keeps its own
-                       * shape; only the empty placeholder falls back to 4/5.
-                       */
-                      ratio={
-                        story.photo
-                          ? `${story.photo.width}/${story.photo.height}`
-                          : '4/5'
-                      }
-                      sizes={SIZE_PORTRAIT}
-                    />
-                    <StatBadge
-                      value={`−${story.lossLabel} kg`}
-                      label={story.duration}
-                      className={styles.badge}
-                    />
+                  <div className={styles.media}>
+                    {story.photos.map((photo) => (
+                      <ImageSlot
+                        key={photo.src.src}
+                        label={photo.alt}
+                        src={photo.src}
+                        /*
+                         * Before/after pairs are collages — cropping them to a
+                         * fixed frame slices the "po" panel off the side, which
+                         * is the half that matters. Each photo keeps its own shape.
+                         */
+                        ratio={`${photo.src.width}/${photo.src.height}`}
+                        sizes={SIZE_PORTRAIT}
+                      />
+                    ))}
+                    {/*
+                     * Below the photos, not over them: the new collages print
+                     * "Przed" / "Po" along their bottom edge, where the badge
+                     * used to sit.
+                     */}
+                    <StatBadge value={story.headline} label={story.headlineNote} />
                   </div>
 
                   <div className={styles.content}>
                     <h2 className={styles.name}>{story.name}</h2>
 
                     <dl className={styles.stats}>
-                      {story.startWeight && (
+                      {story.results.map((result) => (
+                        <div key={result.label} className={styles.statRow}>
+                          <dt>{result.label}</dt>
+                          <dd>{result.value}</dd>
+                        </div>
+                      ))}
+                      {story.duration && (
                         <div className={styles.statRow}>
-                          <dt>Waga początkowa</dt>
-                          <dd>{story.startWeight}</dd>
+                          <dt>Czas współpracy</dt>
+                          <dd>{story.duration}</dd>
                         </div>
                       )}
-                      {story.endWeight && (
-                        <div className={styles.statRow}>
-                          <dt>Waga końcowa</dt>
-                          <dd>{story.endWeight}</dd>
-                        </div>
-                      )}
-                      {story.fatBurned && (
-                        <div className={styles.statRow}>
-                          <dt>Spalony tłuszcz</dt>
-                          <dd>{story.fatBurned}</dd>
-                        </div>
-                      )}
-                      <div className={styles.statRow}>
-                        <dt>Wiek</dt>
-                        <dd>{story.age}</dd>
-                      </div>
-                      <div className={styles.statRow}>
-                        <dt>Czas współpracy</dt>
-                        <dd>{story.duration}</dd>
-                      </div>
                     </dl>
 
-                    <blockquote className={styles.quote}>
-                      {story.quote.map((paragraph) => (
+                    <div className={styles.description}>
+                      {story.description.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
-                    </blockquote>
+                    </div>
                   </div>
                 </Card>
               </Reveal>
