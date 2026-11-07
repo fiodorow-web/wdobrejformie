@@ -103,13 +103,21 @@ export function PricingTabs({ groups }: { groups: PriceGroup[] }) {
             </h2>
             <p className={styles.groupIntro}>{group.intro}</p>
 
-            <Card variant="elevated" className={`${styles.list} ${isPlum ? styles.listPlum : ''}`}>
-              <div className={styles.listInner}>
-                {group.items.map((item) => (
-                  <PricingItem key={item.name} {...item} plum={isPlum} />
-                ))}
+            {(group.itemSections ?? [{ title: '', items: group.items }]).map((section) => (
+              <div key={section.title || group.id}>
+                {section.title && <h3 className={styles.subhead}>{section.title}</h3>}
+                <Card
+                  variant="elevated"
+                  className={`${styles.list} ${isPlum ? styles.listPlum : ''}`}
+                >
+                  <div className={styles.listInner}>
+                    {section.items.map((item) => (
+                      <PricingItem key={item.name} {...item} plum={isPlum} />
+                    ))}
+                  </div>
+                </Card>
               </div>
-            </Card>
+            ))}
 
             {group.packages && (
               <>
@@ -175,6 +183,16 @@ export function PricingTabs({ groups }: { groups: PriceGroup[] }) {
               {group.footnotes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
+              {group.footnoteLink && (
+                <li>
+                  {group.footnoteLink.text}{' '}
+                  <a href={group.footnoteLink.href} target="_blank" rel="noopener noreferrer">
+                    {group.footnoteLink.label}
+                    <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                  </a>
+                  .
+                </li>
+              )}
             </ul>
           </div>
         );

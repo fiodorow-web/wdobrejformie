@@ -10,6 +10,8 @@
  * the Offer JSON-LD all read from this module.
  */
 
+import { site } from './site';
+
 export interface PriceRow {
   name: string;
   description?: string;
@@ -27,6 +29,11 @@ export interface PricePackage {
   includes: string[];
 }
 
+export interface PriceSection {
+  title: string;
+  items: PriceRow[];
+}
+
 export interface PriceGroup {
   id: string;
   label: string;
@@ -34,11 +41,16 @@ export interface PriceGroup {
   intro: string;
   /** Which service line — drives the green/plum accent. */
   line: 'dietetyka' | 'zabiegi';
+  /** Every priced row, flat — the JSON-LD offer catalogue reads this. */
   items: PriceRow[];
+  /** The same rows split under subheadings, where the source list is split that way. */
+  itemSections?: PriceSection[];
   packages?: PricePackage[];
   /** Series pricing, used by the treatment group. */
   series?: Array<{ name: string; rows: PriceRow[] }>;
   footnotes: string[];
+  /** A last footnote that ends in a link. */
+  footnoteLink?: { text: string; label: string; href: string };
 }
 
 const paymentNote = 'Płatności w gabinecie gotówką, przelewem lub BLIKiem.';
@@ -211,6 +223,67 @@ export const osobyZeSchorzeniami: PriceGroup = {
   ],
 };
 
+/*
+ * Treatment prices: copied in full from the poradnia's current page
+ * (wdobrejformie.net/modelowanie-sylwetki/, checked 2026-11-07), in its order and
+ * under its headings. The booster sits under "Zabiegi na twarz" there, but it is
+ * a body treatment (cellulite), so it is listed with the body treatments here.
+ */
+const treatmentSections: PriceSection[] = [
+  {
+    title: 'Zabiegi na ciało',
+    items: [
+      { name: 'Lipolaser', description: 'Sesja 30 minut.', price: 140, featured: true },
+      { name: 'Liposukcja kawitacyjna — uda (przód/tył)', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Liposukcja kawitacyjna — brzuch z boczkami', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Liposukcja kawitacyjna — plecy', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Liposukcja kawitacyjna — ramiona lub łydki', description: '1 partia, 30 minut.', price: 150 },
+      { name: 'Fale radiowe RF — uda (przód/tył)', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Fale radiowe RF — brzuch z boczkami', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Fale radiowe RF — plecy', description: '1 partia, 30 minut.', price: 240 },
+      { name: 'Fale radiowe RF — ramiona lub łydki', description: '1 partia, 30 minut.', price: 150 },
+      { name: 'Kriolipoliza', description: '1 przyłożenie głowicy, 30 minut.', price: 300 },
+      { name: 'Endomasaż SLIMROLL X', description: 'Sesja 50 minut.', price: 280 },
+      {
+        name: 'Booster ujędrniający',
+        description:
+          'Sesja 20 minut. Zabieg ujędrniająco-modelujący ze specjalistycznymi preparatami — zmniejsza widoczność cellulitu, wygładza i napina skórę.',
+        price: 70,
+      },
+    ],
+  },
+  {
+    title: 'Zabiegi na twarz',
+    items: [
+      {
+        name: 'Fale radiowe RF — twarz i podbródek',
+        description: 'Z ampułką liftingującą, 30 minut.',
+        price: 180,
+      },
+      {
+        name: 'Fale radiowe RF — twarz, szyja i dekolt',
+        description: 'Z ampułką liftingującą, 30 minut.',
+        price: 180,
+      },
+      { name: 'Masaż Kobido', description: 'Sesja 45–60 minut.', price: 200 },
+      { name: 'Masaż Kobido z ampułką anti-age', description: 'Sesja 45–60 minut.', price: 240 },
+      { name: '6-etapowe oczyszczanie wodorowe', description: 'Sesja 60 minut.', price: 220 },
+      { name: 'Oczyszczanie wodorowe z ampułką liftingującą', description: 'Sesja 60 minut.', price: 260 },
+    ],
+  },
+  {
+    title: 'Fizjoterapia i masaże',
+    items: [
+      { name: 'Masaż wyszczuplający całego ciała', description: 'Sesja 60 minut.', price: 160 },
+      { name: 'Masaż wyszczuplająco-ujędrniający całego ciała', description: 'Sesja 60 minut.', price: 180 },
+      { name: 'Masaż wyszczuplający z boosterem ujędrniającym', description: 'Sesja 40 minut.', price: 160 },
+      { name: 'Masaż klasyczny całego ciała', description: 'Sesja 60 minut.', price: 160 },
+      { name: 'Masaż klasyczny — plecy, kark, barki', description: 'Sesja 30 minut.', price: 100 },
+      { name: 'Masaż relaksacyjny — plecy, kark, barki', description: 'Sesja 30 minut.', price: 100 },
+    ],
+  },
+];
+
 export const modelowanieSylwetki: PriceGroup = {
   id: 'modelowanie-sylwetki',
   label: 'Modelowanie sylwetki',
@@ -218,43 +291,8 @@ export const modelowanieSylwetki: PriceGroup = {
   intro:
     'Zabiegi wykonujemy pojedynczo lub w seriach — seria zawsze wychodzi taniej. Ceny dotyczą jednej partii ciała lub jednego przyłożenia głowicy.',
   line: 'zabiegi',
-  items: [
-    { name: 'Lipolaser', description: 'Sesja 30 minut.', price: 140, featured: true },
-    {
-      name: 'Liposukcja kawitacyjna — uda, brzuch z boczkami lub plecy',
-      description: '1 partia, 30 minut.',
-      price: 240,
-    },
-    {
-      name: 'Liposukcja kawitacyjna — ramiona lub łydki',
-      description: '1 partia, 30 minut.',
-      price: 150,
-    },
-    {
-      name: 'Fale radiowe RF — uda, brzuch z boczkami lub plecy',
-      description: '1 partia, 30 minut.',
-      price: 240,
-    },
-    { name: 'Fale radiowe RF — ramiona lub łydki', description: '1 partia, 30 minut.', price: 150 },
-    {
-      name: 'Fale radiowe RF — twarz i podbródek',
-      description: 'Z ampułką liftingującą.',
-      price: 180,
-    },
-    {
-      name: 'Fale radiowe RF — twarz, szyja i dekolt',
-      description: 'Z ampułką liftingującą.',
-      price: 180,
-    },
-    {
-      name: 'Kriolipoliza',
-      description: '1 przyłożenie głowicy, 30 minut.',
-      price: 240,
-    },
-    { name: 'Endomasaż SLIMROLL X', description: 'Sesja 50 minut.', price: 280 },
-    { name: 'Masaż Kobido', description: 'Sesja 45–60 minut.', price: 199 },
-    { name: 'Oczyszczanie wodorowe', description: 'Sesja 60 minut.', price: 220 },
-  ],
+  items: treatmentSections.flatMap((section) => section.items),
+  itemSections: treatmentSections,
   series: [
     {
       name: 'Lipolaser',
@@ -280,12 +318,23 @@ export const modelowanieSylwetki: PriceGroup = {
       name: 'Kriolipoliza',
       rows: [
         {
-          name: 'Seria 3 zabiegów',
-          description: '3 przyłożenia głowicy po 30 minut.',
-          price: 480,
+          name: 'Seria 2 zabiegów',
+          description: '2 przyłożenia głowicy po 30 minut.',
+          price: 500,
           note: 'za serię',
         },
-        { name: 'Seria 6 zabiegów', price: 900, note: 'za serię' },
+        {
+          name: 'Seria 3 zabiegów',
+          description: '3 przyłożenia głowicy po 30 minut.',
+          price: 700,
+          note: 'za serię',
+        },
+        {
+          name: 'Seria 4 zabiegów',
+          description: '4 przyłożenia głowicy po 30 minut.',
+          price: 900,
+          note: 'za serię',
+        },
       ],
     },
     {
@@ -298,7 +347,7 @@ export const modelowanieSylwetki: PriceGroup = {
     },
     {
       name: 'Masaż Kobido',
-      rows: [{ name: 'Seria 3 zabiegów', price: 160, note: 'za 1 zabieg' }],
+      rows: [{ name: 'Seria 3 zabiegów', price: 170, note: 'za 1 zabieg' }],
     },
     {
       name: 'Oczyszczanie wodorowe',
@@ -307,9 +356,14 @@ export const modelowanieSylwetki: PriceGroup = {
   ],
   footnotes: [
     'Płatności za pojedyncze zabiegi realizowane są w całości w dniu zabiegu. Płatności za serie mogą być rozłożone na raty.',
-    'Przy płatności za serię z góry otrzymujesz za darmo profesjonalny krem wzmacniający efekt zabiegów albo butelkę motywacyjną.',
+    'Przy płatności za serię zabiegów z góry otrzymujesz gratis ampułkę do zabiegu albo upominek — butelkę motywacyjną.',
     paymentNote,
   ],
+  footnoteLink: {
+    text: 'Aktualną ofertę promocyjną znajdziesz na naszym',
+    label: 'Facebooku',
+    href: site.social.facebook,
+  },
 };
 
 export const priceGroups: PriceGroup[] = [osobyZdrowe, osobyZeSchorzeniami, modelowanieSylwetki];

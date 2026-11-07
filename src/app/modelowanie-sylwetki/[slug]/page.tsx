@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!treatment) return {};
 
   return {
-    title: `${treatment.name} — Węgrów, od ${treatment.priceFrom} zł`,
+    title: `${treatment.name} — Węgrów, od ${treatment.seriesFrom} zł`,
     description: `${treatment.tagline} ${treatment.course} Poradnia W Dobrej Formie, Węgrów.`,
     alternates: { canonical: `/modelowanie-sylwetki/${treatment.slug}` },
   };
@@ -131,8 +131,8 @@ export default async function TreatmentPage({ params }: { params: Promise<Params
                 <dd>{treatment.durationLabel}</dd>
               </div>
               <div className={styles.factRow}>
-                <dt>Cena</dt>
-                <dd className={styles.price}>{treatmentPrice(treatment)}</dd>
+                <dt>Pojedynczy zabieg</dt>
+                <dd className={styles.price}>{treatment.singlePrice}</dd>
               </div>
               {treatment.seriesHighlight && (
                 <div className={styles.factRow}>

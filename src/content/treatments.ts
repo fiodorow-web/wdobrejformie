@@ -43,8 +43,15 @@ export interface Treatment {
   /** Describes the footage. Required whenever `video` is set. */
   videoLabel?: string;
   durationLabel: string;
-  /** Entry price in PLN. */
+  /** Entry price of a single visit, in PLN ("od X zł" on the lists for treatments without priceText). */
   priceFrom: number;
+  /** Single-visit price as shown in the treatment page's price box. */
+  singlePrice: string;
+  /**
+   * Lowest price of one treatment bought in a series, in PLN — the honest "od"
+   * figure (the client's rule), used in the page title Google shows.
+   */
+  seriesFrom: number;
   /**
    * Single-visit price as the client words it, shown in place of "od X zł"
    * wherever the treatment's price appears. Treatments without one keep "od".
@@ -75,6 +82,8 @@ export const treatments: Treatment[] = [
     videoLabel: 'Płytki lipolasera przymocowane pasami do brzucha pacjentki w trakcie zabiegu',
     durationLabel: '30 minut',
     priceFrom: 140,
+    singlePrice: '140 zł',
+    seriesFrom: 80,
     priceText: '140 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
     seriesHighlight: 'od 80 zł za zabieg w serii od 8 zabiegów',
     body: [
@@ -98,6 +107,8 @@ export const treatments: Treatment[] = [
       'Mgr Katarzyna Tyszko prowadzi zabieg na brzuchu pacjentki głowicą zabiegową w gabinecie w Węgrowie',
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
+    singlePrice: '150–240 zł',
+    seriesFrom: 100,
     priceText: '240 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
     priceNote: '150 zł za ramiona lub łydki, 240 zł za uda, brzuch z boczkami albo plecy',
     seriesHighlight: 'od 100 zł za zabieg w serii od 8 zabiegów',
@@ -125,6 +136,8 @@ export const treatments: Treatment[] = [
     photoAlt: 'Wielobiegunowa głowica fal radiowych RF prowadzona po skórze podczas zabiegu',
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
+    singlePrice: '150–240 zł',
+    seriesFrom: 100,
     priceText: 'od 150 do 240 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
     priceNote:
       '150 zł za ramiona lub łydki, 240 zł za uda, brzuch z boczkami albo plecy, 180 zł za partie twarzy z ampułką liftingującą',
@@ -156,9 +169,13 @@ export const treatments: Treatment[] = [
     videoLabel:
       'Dwie głowice kriolipolizy z wyświetlaczami przymocowane do brzucha pacjentki w trakcie zabiegu',
     durationLabel: '30 minut / 1 przyłożenie głowicy',
-    priceFrom: 240,
+    priceFrom: 300,
+    singlePrice: '300 zł',
+    // 900 zł for a series of 4.
+    seriesFrom: 225,
     priceText: '300 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
-    seriesHighlight: '480 zł za serię 3 zabiegów, 900 zł za serię 6 zabiegów',
+    // No-break space keeps each price with its zł when the box wraps.
+    seriesHighlight: '500\u00a0zł za 2 zabiegi, 700\u00a0zł za 3 zabiegi, 900\u00a0zł za 4 zabiegi',
     body: [
       'Kriolipoliza redukuje tkankę tłuszczową przez zamrażanie niechcianych komórek tłuszczowych, co prowadzi do ich rozpadu (lipolizy).',
       'Do dyspozycji mamy dwie silikonowe głowice różnej wielkości, dzięki czemu dobieramy zabieg do konkretnej partii ciała. Podczas zabiegu nie odczuwasz chłodu — chroni Cię membrana zabezpieczająca.',
@@ -184,6 +201,10 @@ export const treatments: Treatment[] = [
     videoLabel: 'Głowica rollerowa endomasażu z podświetleniem LED w trakcie pracy',
     durationLabel: '50 minut',
     priceFrom: 280,
+    singlePrice: '280 zł',
+    // 3000 zł for a package of 15.
+    seriesFrom: 200,
+    priceText: '280 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
     seriesHighlight: 'pakiety od 1250 zł, kombinezon gratis',
     body: [
       'SLIMROLL X to innowacyjne połączenie endermologii, masażu rollerowego i fali radiowej.',
@@ -205,8 +226,12 @@ export const treatments: Treatment[] = [
     name: 'Masaż Kobido',
     tagline: 'Niechirurgiczny lifting twarzy.',
     durationLabel: '45–60 minut',
-    priceFrom: 199,
-    seriesHighlight: '160 zł za zabieg w serii 3 zabiegów',
+    priceFrom: 200,
+    singlePrice: '200 zł',
+    seriesFrom: 170,
+    priceText: '200 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
+    priceNote: 'Z ampułką anti-age 240 zł.',
+    seriesHighlight: '170 zł za zabieg w serii 3 zabiegów',
     body: [
       'Rytuał Kobido, nazywany „niechirurgicznym liftingiem twarzy”, łączy różne techniki masażu wykonywane w obrębie twarzy, szyi, dekoltu i karku.',
       'Regularne sesje wyraźnie poprawiają wygląd skóry, zwiększają jej elastyczność i redukują oznaki starzenia.',
@@ -225,6 +250,10 @@ export const treatments: Treatment[] = [
     tagline: 'Głębokie oczyszczenie skóry cząsteczkami wodoru.',
     durationLabel: '60 minut',
     priceFrom: 220,
+    singlePrice: '220 zł',
+    seriesFrom: 180,
+    priceText: '220 zł/\u200bpojedynczy zabieg (w\u00a0serii taniej)',
+    priceNote: 'Z ampułką liftingującą 260 zł.',
     seriesHighlight: '180 zł za zabieg w serii 3 zabiegów',
     body: [
       'W trakcie zabiegu specjalna głowica wprowadza w skórę mikroskopijne cząsteczki wodoru. Skóra zostaje dokładnie oczyszczona z zanieczyszczeń, nadmiaru sebum i martwego naskórka.',
