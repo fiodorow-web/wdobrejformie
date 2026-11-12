@@ -13,7 +13,6 @@
 import type { StaticImageData } from 'next/image';
 
 import lipolaserPlytki from '@/assets/photos/lipolaser-plytki-laserowe-na-udach.webp';
-import kawitacjaBrzuch from '@/assets/photos/zabieg-modelowania-sylwetki-brzucha.webp';
 import glowicaRf from '@/assets/photos/glowica-rf-modelowanie-sylwetki.webp';
 import strefaZabiegowa from '@/assets/photos/strefa-zabiegowa-lezanka-i-urzadzenie.webp';
 import glowicaRolkowa from '@/assets/photos/glowica-endosferyczna-led-czerwone.webp';
@@ -102,9 +101,10 @@ export const treatments: Treatment[] = [
     slug: 'liposukcja-kawitacyjna',
     name: 'Liposukcja kawitacyjna',
     tagline: 'Ultradźwięki rozbijające komórki tłuszczowe — bez skalpela.',
-    photo: kawitacjaBrzuch,
-    photoAlt:
-      'Mgr Katarzyna Tyszko prowadzi zabieg na brzuchu pacjentki głowicą zabiegową w gabinecie w Węgrowie',
+    // The earlier photo showed a former employee; the client supplied this clip instead (2026-11).
+    video: 'liposukcja-kawitacyjna-zabieg',
+    videoLabel:
+      'Głowica do liposukcji kawitacyjnej z czerwonym podświetleniem prowadzona po brzuchu pacjentki w trakcie zabiegu',
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
     singlePrice: '150–240 zł',
@@ -282,11 +282,14 @@ export function getTreatment(slug: string): Treatment | undefined {
 
 /**
  * Contraindications for the BIA body-composition scan, quoted from the source
- * page. Medical content — carried over verbatim, never paraphrased.
+ * page. Medical content — carried over verbatim, never paraphrased. The pacemaker
+ * and metal-implant entries were added in the client's own words (2026-11).
+ * The FAQ answer "Kto nie może wykonać badania BIA?" repeats this list — keep both in step.
  */
 export const biaContraindications = [
   'kobiety w ciąży',
-  'osoby z defibrylatorem serca',
+  'osoby z defibrylatorem lub rozrusznikiem serca',
+  'osoby z metalowymi elementami w ciele (np. metalowe implanty, endoprotezy, stenty, klamry chirurgiczne)',
   'dzieci poniżej 5. roku życia',
   'osoby chore na epilepsję',
 ] as const;

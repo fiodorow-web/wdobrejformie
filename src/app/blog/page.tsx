@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Badge, Reveal, Section } from '@/components/ds';
 import { PageHeader } from '@/components/sections/Prose';
-import { formatDate, getAllPosts, isArchived } from '@/lib/blog';
+import { getAllPosts, isArchived } from '@/lib/blog';
 import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
@@ -30,10 +30,12 @@ export default async function BlogIndexPage() {
               {/* Capped stagger — the list runs to 28 posts. */}
               <Reveal delay={Math.min(index, 6) * 70}>
                 <Link href={`/blog/${post.slug}`} className={styles.card}>
-                <div className={styles.meta}>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                  {isArchived(post) && <Badge tone="outline">Archiwalny</Badge>}
-                </div>
+                {/* No publication dates on the blog (client's request, 2026-11). */}
+                {isArchived(post) && (
+                  <div className={styles.meta}>
+                    <Badge tone="outline">Archiwalny</Badge>
+                  </div>
+                )}
                 <h2 className={styles.title}>{post.title}</h2>
                 {post.excerpt && <p className={styles.excerpt}>{post.excerpt}</p>}
                   <span className={styles.more}>Czytaj dalej</span>

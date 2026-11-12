@@ -66,7 +66,11 @@ export interface TransformationResult {
 
 export interface Transformation {
   slug: string;
-  /** First name when the post gives one, otherwise "Pacjentka" / "Pacjent". */
+  /**
+   * Card heading: "Pani …" / "Pan …" with the first name (client, 2026-11); "Efekty zabiegów"
+   * for the unnamed treatment stories; "Pacjentka" for the unnamed diet-only one. The 12-year-old
+   * is the exception — "Pani" reads wrong for a child, so her card keeps the bare name.
+   */
   name: string;
   /** Headline result on the photo badge, e.g. "−10,5 kg". */
   headline: string;
@@ -85,7 +89,7 @@ export interface Transformation {
 export const transformations: Transformation[] = [
   {
     slug: 'pacjentka-dieta-i-zabiegi',
-    name: 'Pacjentka',
+    name: 'Efekty zabiegów',
     headline: '−10,5 kg',
     headlineNote: '4 miesiące',
     duration: '4 miesiące',
@@ -109,7 +113,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'ilona',
-    name: 'Ilona',
+    name: 'Pani Ilona',
     headline: '−11 kg',
     headlineNote: '6 miesięcy',
     duration: '6 miesięcy',
@@ -130,7 +134,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'pawel',
-    name: 'Paweł',
+    name: 'Pan Paweł',
     headline: '−29 kg',
     headlineNote: '4 miesiące',
     duration: '4 miesiące',
@@ -157,7 +161,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'hanna',
-    name: 'Hanna',
+    name: 'Pani Hanna',
     headline: '−15,5 kg',
     headlineNote: '9 miesięcy',
     duration: '9 miesięcy',
@@ -187,7 +191,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'maciej',
-    name: 'Maciej',
+    name: 'Pan Maciej',
     headline: '−28,5 kg',
     headlineNote: '5 miesięcy',
     duration: '5 miesięcy',
@@ -208,7 +212,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'ela',
-    name: 'Ela',
+    name: 'Pani Ela',
     headline: '−12 kg',
     headlineNote: '6 miesięcy',
     duration: '6 miesięcy',
@@ -233,7 +237,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'agnieszka',
-    name: 'Agnieszka',
+    name: 'Pani Agnieszka',
     headline: '−15 kg',
     results: [
       { label: 'Masa ciała', value: '−15 kg' },
@@ -256,7 +260,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'barbara',
-    name: 'Barbara',
+    name: 'Pani Barbara',
     headline: '−11 kg',
     headlineNote: '5 miesięcy',
     duration: '5 miesięcy',
@@ -309,7 +313,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'pacjentka-zabiegi',
-    name: 'Pacjentka',
+    name: 'Efekty zabiegów',
     headline: '−15 cm',
     headlineNote: 'pod pępkiem',
     results: [
@@ -335,7 +339,7 @@ export const transformations: Transformation[] = [
   /* ---- Older stories (11–20) ---- */
   {
     slug: 'marzena',
-    name: 'Marzena',
+    name: 'Pani Marzena',
     headline: '−15,4 kg',
     headlineNote: '5 miesięcy',
     duration: '5 miesięcy',
@@ -361,7 +365,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'andrzej',
-    name: 'Andrzej',
+    name: 'Pan Andrzej',
     headline: '−34 kg',
     headlineNote: 'marzec–listopad',
     duration: 'od marca do listopada',
@@ -386,7 +390,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'dorota',
-    name: 'Dorota',
+    name: 'Pani Dorota',
     headline: '−15 kg',
     headlineNote: 'niecałe 5 miesięcy',
     duration: 'niecałe 5 miesięcy',
@@ -407,7 +411,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'aneta',
-    name: 'Aneta',
+    name: 'Pani Aneta',
     headline: '−6,5 kg',
     headlineNote: '4 miesiące',
     duration: '4 miesiące',
@@ -431,7 +435,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'pacjent-rozstepy',
-    name: 'Pacjent',
+    name: 'Efekty zabiegów',
     headline: 'Mniej rozstępów',
     headlineNote: 'liposukcja kawitacyjna',
     results: [
@@ -458,7 +462,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'martyna',
-    name: 'Martyna',
+    name: 'Pani Martyna',
     headline: 'prawie −14 kg',
     headlineNote: '4 miesiące',
     duration: '4 miesiące',
@@ -511,7 +515,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'robert',
-    name: 'Robert',
+    name: 'Pan Robert',
     headline: '−14 kg',
     results: [
       { label: 'Masa ciała', value: '−14 kg' },
@@ -536,7 +540,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'marta',
-    name: 'Marta',
+    name: 'Pani Marta',
     headline: '−10,4 kg',
     headlineNote: '3 miesiące',
     duration: '3 miesiące',
@@ -561,7 +565,7 @@ export const transformations: Transformation[] = [
   },
   {
     slug: 'pacjentka-kriolipoliza',
-    name: 'Pacjentka',
+    name: 'Efekty zabiegów',
     headline: '4 zabiegi',
     headlineNote: 'kriolipoliza',
     results: [

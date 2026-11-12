@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Badge, Button, Card, Reveal, Section } from '@/components/ds';
 import { Markdown } from '@/components/sections/Markdown';
 import { SectionHead, prose } from '@/components/sections/Prose';
-import { formatDate, getAllPosts, getPost, isArchived } from '@/lib/blog';
+import { getAllPosts, getPost, isArchived } from '@/lib/blog';
 import { JsonLd } from '@/components/JsonLd';
 import { articleJsonLd, breadcrumbJsonLd } from '@/lib/jsonld';
 import styles from '../Blog.module.css';
@@ -57,18 +57,19 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
           <ArrowLeft size={16} aria-hidden="true" />
           Wróć do bloga
         </Link>
-        <div className={styles.postMeta} style={{ marginTop: 'var(--space-5)' }}>
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          {archived && <Badge tone="outline">Archiwalny</Badge>}
-        </div>
+        {/* No publication dates on the blog (client's request, 2026-11); search engines still get them from the metadata. */}
+        {archived && (
+          <div className={styles.postMeta} style={{ marginTop: 'var(--space-5)' }}>
+            <Badge tone="outline">Archiwalny</Badge>
+          </div>
+        )}
         <h1 className={styles.postTitle}>{post.title}</h1>
       </header>
 
       <Section tone="surface" tight>
         {archived && (
           <p className={styles.archiveNotice}>
-            Ten artykuł powstał {formatDate(post.date)} i nie był od tego czasu aktualizowany.
-            Zalecenia żywieniowe się zmieniają — jeśli chcesz mieć pewność, że informacje są
+            Ten artykuł nie był aktualizowany od dłuższego czasu. Zalecenia żywieniowe się zmieniają — jeśli chcesz mieć pewność, że informacje są
             aktualne w Twoim przypadku, umów się na konsultację.
           </p>
         )}
@@ -83,9 +84,6 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         <div className={styles.related}>
           {related.map((entry) => (
             <Link key={entry.slug} href={`/blog/${entry.slug}`} className={styles.card}>
-              <div className={styles.meta}>
-                <time dateTime={entry.date}>{formatDate(entry.date)}</time>
-              </div>
               <h3 className={styles.title}>{entry.title}</h3>
               <span className={styles.more}>Czytaj dalej</span>
             </Link>

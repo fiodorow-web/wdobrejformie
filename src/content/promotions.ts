@@ -3,6 +3,11 @@
  *
  * The treatment-series offers live on /modelowanie-sylwetki/ on the old site
  * and the dietetics ones on /promocje/ — both belong on one page.
+ *
+ * The two treatment-series offers (an extra treatment or 25% off a second
+ * series; 50% off the cheaper single treatment) were removed in 2026-11 — the
+ * client confirmed they no longer run. Only the series price itself stays, and
+ * that lives in the price list.
  */
 
 export interface Promotion {
@@ -48,25 +53,6 @@ export const promotions: Promotion[] = [
     details: [
       'Rabat otrzymujesz, gdy poleconą przez Ciebie osobę zobaczymy w gabinecie.',
       'Do wykorzystania na dowolny zabieg w strefie zabiegowej.',
-    ],
-  },
-  {
-    title: 'Zakup serii zabiegów',
-    line: 'zabiegi',
-    summary: 'Seria kupiona w dniu pierwszego zabiegu daje dodatkowy zabieg albo rabat.',
-    details: [
-      'Jedna seria dowolnych zabiegów — 1 inny niż wykupiony zabieg GRATIS.',
-      'Dwie serie zabiegów — 25% rabatu na tańszą z nich.',
-      'Przy płatności za serię z góry: profesjonalny krem wzmacniający efekt zabiegów albo butelka motywacyjna za darmo.',
-    ],
-    footnote: 'Powyższe promocje nie łączą się ze sobą.',
-  },
-  {
-    title: 'Zakup pojedynczych zabiegów',
-    line: 'zabiegi',
-    summary: '50% rabatu na tańszy zabieg.',
-    details: [
-      'Jeśli w dniu pierwszego zrealizowanego zabiegu zdecydujesz się na 2 kolejne zabiegi, otrzymasz 50% rabatu na tańszy z nich.',
     ],
   },
 ];

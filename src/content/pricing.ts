@@ -80,13 +80,13 @@ export const osobyZdrowe: PriceGroup = {
       name: 'Konsultacja kontrolna z badaniem składu ciała',
       description:
         'Wizyta motywująco-edukacyjna z ponownym badaniem. Omawiamy bieżące trudności i wspólnie modyfikujemy jadłospis. 30 minut.',
-      price: 120,
+      price: 140,
     },
     {
       name: 'Jadłospis spersonalizowany',
       description:
         '7-dniowy jadłospis z gramaturą, przepisami, listą zakupów na cały tydzień i planem na lodówkę. Do zastosowania 2–3-krotnie, do czasu konsultacji kontrolnej.',
-      price: 160,
+      price: 180,
     },
     {
       name: 'Plan stabilizacji i zalecenia',
@@ -178,13 +178,13 @@ export const osobyZeSchorzeniami: PriceGroup = {
       name: 'Konsultacja kontrolna z badaniem składu ciała',
       description:
         'Wizyta motywująco-edukacyjna z ponownym badaniem i dopasowaniem jadłospisu. 30 minut.',
-      price: 120,
+      price: 140,
     },
     {
       name: 'Jadłospis spersonalizowany',
       description:
         '7-dniowy jadłospis pod konkretne schorzenie lub dietę eliminacyjną, z listą zakupów i dokładnymi wyliczeniami. Maksymalnie 2 schorzenia lub eliminacje.',
-      price: 200,
+      price: 220,
     },
     {
       name: 'Plan stabilizacji i zalecenia',

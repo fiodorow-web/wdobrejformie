@@ -10,7 +10,7 @@ import planZywieniowy from '@/assets/photos/indywidualny-plan-zywieniowy.webp';
 import jadlospis from '@/assets/photos/ukladanie-jadlospisu-w-poradni.webp';
 
 export const metadata: Metadata = {
-  title: 'Plany żywieniowe — indywidualne jadłospisy od 160 zł',
+  title: 'Plany żywieniowe — indywidualne jadłospisy od 180 zł',
   description:
     '7-dniowy jadłospis z gramaturą, przepisami i listą zakupów na cały tydzień. Bez suplementów, wyłącznie z produktów dostępnych w każdym sklepie. Poradnia W Dobrej Formie, Węgrów.',
   alternates: { canonical: '/plany-zywieniowe' },
@@ -97,7 +97,9 @@ export default function MealPlansPage() {
             </h3>
             <CheckList
               items={[
-                'Opracowany na 7 dni, z możliwością powtarzania.',
+                'Opracowany na 7 dni, z możliwością stosowania kilkukrotnie.',
+                'Udostępniany w aplikacji na telefonie, rozpisany na każdy dzień.',
+                'W aplikacji możesz wymienić posiłek na inny z listy zaproponowanych.',
                 'Uwzględnia dania i produkty, które lubisz i chętnie jesz.',
                 'Nie zawiera produktów, których nie lubisz ani tych, których nie powinieneś jeść przy zgłoszonym schorzeniu.',
                 'Modyfikowany po każdej konsultacji kontrolnej, wraz ze zmieniającymi się potrzebami.',
@@ -112,7 +114,8 @@ export default function MealPlansPage() {
             </h3>
             <CheckList
               items={[
-                'Podana na cały tydzień.',
+                'W aplikacji — na cały tydzień lub na wybrane dni.',
+                'Nie musisz chodzić z kartkami po sklepie, listę masz w telefonie.',
                 'Wyszczególnia produkty w gramach.',
                 'Pozwala kupić większość produktów jednorazowo.',
                 'Nie musisz tracić czasu na codzienne zakupy.',
@@ -128,12 +131,15 @@ export default function MealPlansPage() {
           <div>
             <SectionHead
               eyebrow="Dostęp"
-              title="Wszystko w panelu pacjenta"
-              lead="Plany żywieniowe i materiały dodatkowe udostępniamy drogą internetową. Masz do nich dostęp przez cały okres współpracy — i również po jej zakończeniu."
+              title="Wszystko w aplikacji na telefonie"
+              lead={`Plany żywieniowe i materiały dodatkowe udostępniamy w aplikacji „${site.patientApp.name}”: jadłospis na każdy dzień, wymianę posiłków i listę zakupów na cały tydzień lub wybrane dni. Wersję papierową drukujemy dodatkowo na życzenie. Masz do nich dostęp przez cały okres współpracy — i również po jej zakończeniu.`}
               headingId="dostep"
             />
             <div className={prose.actions}>
-              <Button href={site.patientZoneUrl}>Przejdź do Strefy Pacjenta</Button>
+              <Button href={site.patientApp.appStore}>Pobierz z App Store</Button>
+              <Button href={site.patientApp.googlePlay} variant="secondary">
+                Pobierz z Google Play
+              </Button>
             </div>
           </div>
           <div>

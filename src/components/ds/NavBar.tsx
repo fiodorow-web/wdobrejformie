@@ -4,23 +4,51 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
-import { ChevronDown, LogIn, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, Smartphone, X } from 'lucide-react';
 import { Button } from './Button';
 import type { NavLink } from '@/content/navigation';
 import styles from './NavBar.module.css';
+
+/** The phone app patients get their menus in. */
+export interface PatientApp {
+  name: string;
+  appStore: string;
+  googlePlay: string;
+}
 
 export interface NavBarProps {
   links: NavLink[];
   ctaLabel?: string;
   ctaHref?: string;
-  patientZoneUrl?: string;
+  patientApp?: PatientApp;
 }
+
+/** Explanation plus the two store links — shared by the desktop popover and the mobile panel. */
+function PatientAppInfo({ app, textClass, linkClass }: { app: PatientApp; textClass: string; linkClass: string }) {
+  return (
+    <>
+      <p className={textClass}>
+        Jadłospisy i materiały od dietetyka znajdziesz w aplikacji na telefon „{app.name}”.
+      </p>
+      <a href={app.appStore} className={linkClass} target="_blank" rel="noopener noreferrer">
+        Pobierz z App Store
+        <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+      </a>
+      <a href={app.googlePlay} className={linkClass} target="_blank" rel="noopener noreferrer">
+        Pobierz z Google Play
+        <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+      </a>
+    </>
+  );
+}
+
+const PATIENT_MENU = 'strefa-pacjenta';
 
 export function NavBar({
   links,
   ctaLabel = 'Zapisz się',
   ctaHref = '/kontakt',
-  patientZoneUrl,
+  patientApp,
 }: NavBarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -155,16 +183,38 @@ export function NavBar({
         </ul>
 
         <div className={styles.actions}>
-          {patientZoneUrl && (
-            <a
-              href={patientZoneUrl}
-              className={styles.patientZone}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LogIn size={16} strokeWidth={1.5} aria-hidden="true" />
-              Strefa Pacjenta
-            </a>
+          {patientApp && (
+            <div className={styles.patientWrap}>
+              <button
+                type="button"
+                className={styles.patientZone}
+                aria-expanded={openMenu === PATIENT_MENU}
+                aria-controls={`${baseId}-patient`}
+                onClick={() =>
+                  setOpenMenu((current) => (current === PATIENT_MENU ? null : PATIENT_MENU))
+                }
+              >
+                <Smartphone size={16} strokeWidth={1.5} aria-hidden="true" />
+                Strefa Pacjenta
+                <ChevronDown
+                  size={14}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                  className={`${styles.chevron} ${openMenu === PATIENT_MENU ? styles.chevronOpen : ''}`}
+                />
+              </button>
+              <div
+                id={`${baseId}-patient`}
+                className={styles.patientMenu}
+                hidden={openMenu !== PATIENT_MENU}
+              >
+                <PatientAppInfo
+                  app={patientApp}
+                  textClass={styles.patientText}
+                  linkClass={styles.menuLink}
+                />
+              </div>
+            </div>
           )}
           <Button href={ctaHref} size="sm">
             {ctaLabel}
@@ -238,16 +288,18 @@ export function NavBar({
 
           <div className={styles.panelActions}>
             <Button href={ctaHref}>{ctaLabel}</Button>
-            {patientZoneUrl && (
-              <a
-                href={patientZoneUrl}
-                className={styles.patientZone}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LogIn size={16} strokeWidth={1.5} aria-hidden="true" />
-                Strefa Pacjenta
-              </a>
+            {patientApp && (
+              <div className={styles.panelApp}>
+                <span className={styles.panelAppTitle}>
+                  <Smartphone size={16} strokeWidth={1.5} aria-hidden="true" />
+                  Strefa Pacjenta
+                </span>
+                <PatientAppInfo
+                  app={patientApp}
+                  textClass={styles.patientText}
+                  linkClass={styles.panelSubLink}
+                />
+              </div>
             )}
           </div>
         </div>

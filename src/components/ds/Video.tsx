@@ -16,8 +16,17 @@ export interface VideoProps {
    * part), so they are content — not decoration.
    */
   label: string;
-  /** CSS aspect-ratio. The gabinet clips are all filmed vertically. */
-  ratio?: string;
+  /**
+   * CSS aspect-ratio. The gabinet clips are all filmed vertically. Pass null to
+   * leave the shape to `className` (e.g. a different ratio per breakpoint).
+   */
+  ratio?: string | null;
+  /**
+   * "cover" fills the frame and crops; "contain" shows the whole clip and fills
+   * the space beside it with a blurred copy of its poster — for an upright clip
+   * in a wider frame, where cropping would cut away most of the picture.
+   */
+  fit?: 'cover' | 'contain';
   className?: string;
   style?: CSSProperties;
 }
@@ -38,7 +47,7 @@ const ROOT_MARGIN = '200px';
  * The <source> elements are withheld until the frame nears the viewport, so a
  * 1 MB clip on a page nobody scrolls to is never fetched.
  */
-export function Video({ src, label, ratio = '9/16', className, style }: VideoProps) {
+export function Video({ src, label, ratio = '9/16', fit = 'cover', className, style }: VideoProps) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -80,9 +89,16 @@ export function Video({ src, label, ratio = '9/16', className, style }: VideoPro
   return (
     <div
       ref={observe}
-      className={[styles.frame, className].filter(Boolean).join(' ')}
-      style={{ aspectRatio: ratio, ...style }}
+      className={[styles.frame, fit === 'contain' && styles.contain, className]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ ...(ratio ? { aspectRatio: ratio } : null), ...style }}
     >
+      {fit === 'contain' && (
+        // Decorative fill beside the clip; the poster is already a small webp.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={`/video/${src}-poster.webp`} alt="" aria-hidden="true" className={styles.backdrop} />
+      )}
       <video
         className={styles.video}
         poster={`/video/${src}-poster.webp`}

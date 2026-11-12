@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Clock, LogIn, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone, Smartphone } from 'lucide-react';
 import { Card, ImageSlot, Reveal, Section } from '@/components/ds';
 import { PageHeader, SectionHead, prose } from '@/components/sections/Prose';
 import { ContactForm } from '@/components/sections/ContactForm';
@@ -54,10 +54,19 @@ export default function ContactPage() {
                   <span>{site.openingHours.label}</span>
                 </li>
                 <li>
-                  <LogIn size={20} strokeWidth={1.5} aria-hidden="true" />
-                  <a href={site.patientZoneUrl} target="_blank" rel="noopener noreferrer">
-                    Strefa Pacjenta
-                  </a>
+                  <Smartphone size={20} strokeWidth={1.5} aria-hidden="true" />
+                  <span>
+                    Jadłospisy w aplikacji „{site.patientApp.name}”:{' '}
+                    <a href={site.patientApp.appStore} target="_blank" rel="noopener noreferrer">
+                      App Store
+                      <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                    </a>
+                    {' · '}
+                    <a href={site.patientApp.googlePlay} target="_blank" rel="noopener noreferrer">
+                      Google Play
+                      <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                    </a>
+                  </span>
                 </li>
               </ul>
 

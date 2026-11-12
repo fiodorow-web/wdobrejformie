@@ -55,10 +55,15 @@ export const site = {
   },
 
   /**
-   * The patient panel is a third-party SaaS (DietetykPro), not part of this site
-   * and not part of the old WordPress either. It stays an outbound link.
+   * Menus reach patients through DietetykPro's phone app. Its web panel
+   * (pacjent.dietetykpro.pl) has not been supported since 23.10.2025, so the site
+   * links only to the two app stores — the links come from that panel's own page.
    */
-  patientZoneUrl: 'https://pacjent.dietetykpro.pl/zaloguj',
+  patientApp: {
+    name: 'DietetykPro – dieta i przepisy',
+    appStore: 'https://apps.apple.com/pl/app/dietetykpro-dieta-i-przepisy/id6479309416?l=pl',
+    googlePlay: 'https://play.google.com/store/apps/details?id=pl.dietetykpro.diet&hl=pl',
+  },
 
   /** The poradnia's own profiles, supplied by the client (tracking query stripped). */
   social: {

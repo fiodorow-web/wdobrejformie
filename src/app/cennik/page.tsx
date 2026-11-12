@@ -10,7 +10,7 @@ import styles from '@/components/sections/Home.module.css';
 export const metadata: Metadata = {
   title: 'Cennik — konsultacje, jadłospisy i zabiegi',
   description:
-    'Pełny cennik poradni W Dobrej Formie w Węgrowie: badanie składu ciała 50 zł, konsultacja wstępna 180 zł, jadłospisy od 160 zł oraz zabiegi modelowania sylwetki od 140 zł.',
+    'Pełny cennik poradni W Dobrej Formie w Węgrowie: badanie składu ciała 50 zł, konsultacja wstępna 180 zł, jadłospisy od 180 zł oraz zabiegi modelowania sylwetki od 140 zł.',
   alternates: { canonical: '/cennik' },
 };
 

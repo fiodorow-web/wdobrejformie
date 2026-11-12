@@ -142,6 +142,67 @@
   color: var(--color-cta);
 }
 
+/* "Strefa Pacjenta" opens a note about the phone app instead of the retired web panel. */
+.patientWrap {
+  position: relative;
+}
+
+button.patientZone {
+  padding: var(--space-2) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.patientMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 20rem;
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.patientMenu[hidden] {
+  display: none;
+}
+
+.patientText {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.panelApp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.panelAppTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.panelApp .patientText {
+  padding: 0;
+}
+
 /* ---- Hamburger ---- */
 .toggle {
   display: inline-flex;

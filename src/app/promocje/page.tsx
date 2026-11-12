@@ -8,7 +8,7 @@ import homeStyles from '@/components/sections/Home.module.css';
 export const metadata: Metadata = {
   title: 'Promocje — rabaty na pakiety i serie zabiegów',
   description:
-    'Odchudzanie w parach, siódme badanie składu ciała gratis, stały rabat 10% na kolejny pakiet, 50% za polecenie oraz rabaty na serie zabiegów w strefie zabiegowej.',
+    'Odchudzanie w parach, siódme badanie składu ciała gratis, stały rabat 10% na kolejny pakiet, 50% za polecenie oraz tańsze zabiegi w seriach.',
   alternates: { canonical: '/promocje' },
 };
 
@@ -43,6 +43,20 @@ export default function PromotionsPage() {
               title={group.heading}
               headingId={`${group.id}-heading`}
             />
+            {items.length === 0 && isPlum && (
+              <Card variant="plum-tint" className={styles.card}>
+                <h3 className={styles.title}>Seria zawsze wychodzi taniej</h3>
+                <p className={styles.summaryPlum}>
+                  W seriach zabiegi są tańsze niż pojedynczo. Ceny wszystkich serii znajdziesz
+                  w cenniku.
+                </p>
+                <div className={prose.actions} style={{ marginTop: 'var(--space-4)' }}>
+                  <Button href="/cennik#modelowanie-sylwetki" variant="plum">
+                    Cennik i serie
+                  </Button>
+                </div>
+              </Card>
+            )}
             <div className={prose.grid2}>
               {items.map((promo, promoIndex) => (
                 <Reveal key={promo.title} variant="zoom" delay={promoIndex * 90}>

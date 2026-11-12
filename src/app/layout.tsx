@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main">
           Przejdź do treści
         </a>
-        <NavBar links={mainNav} ctaHref="/kontakt" patientZoneUrl={site.patientZoneUrl} />
+        <NavBar links={mainNav} ctaHref="/kontakt" patientApp={site.patientApp} />
         <main id="main">{children}</main>
         <Footer />
         <JsonLd data={organizationJsonLd()} />

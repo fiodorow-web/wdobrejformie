@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Accordion, Button, Card, ImageSlot, Reveal, Section, Video } from '@/components/ds';
 import { Body, PageHeader, SectionHead, prose } from '@/components/sections/Prose';
 import { treatmentPrice, treatments } from '@/content/treatments';
-import { promotions } from '@/content/promotions';
 import { treatmentFaq } from '@/content/faq';
 import { JsonLd } from '@/components/JsonLd';
 import { faqJsonLd } from '@/lib/jsonld';
@@ -42,7 +41,6 @@ export const metadata: Metadata = {
 
 export default function TreatmentsHubPage() {
   const katarzyna = team.find((member) => member.line === 'zabiegi');
-  const treatmentPromos = promotions.filter((promo) => promo.line === 'zabiegi');
 
   return (
     <>
@@ -50,7 +48,7 @@ export default function TreatmentsHubPage() {
         eyebrow="Strefa zabiegowa"
         eyebrowTone="plum"
         title="Twoje ciało. Twoje zasady. Twój efekt."
-        lead="Siedem zabiegów, które modelują sylwetkę i poprawiają kondycję skóry tam, gdzie sama dieta działa najwolniej. Wszystkie bezinwazyjne, bez rekonwalescencji."
+        lead="Zabiegi, które modelują sylwetkę i poprawiają kondycję skóry tam, gdzie sama dieta działa najwolniej. Wszystkie bezinwazyjne, bez rekonwalescencji."
       >
         <div className={prose.actions}>
           <Button href="/kontakt" variant="plum" size="lg">
@@ -122,30 +120,18 @@ export default function TreatmentsHubPage() {
       )}
 
       <Section tone="dark" aria-labelledby="promocje-zabiegi">
+        {/* The series offers listed here are no longer running (client, 2026-11); only the series discount stays. */}
         <SectionHead
-          eyebrow="Promocje"
+          eyebrow="Serie zabiegów"
           eyebrowTone="plum-light"
           title="Seria zawsze wychodzi taniej"
+          lead="W seriach zabiegi są tańsze niż pojedynczo. Ceny wszystkich serii znajdziesz w cenniku."
           onDark
           headingId="promocje-zabiegi"
         />
-        <div className={prose.grid2}>
-          {treatmentPromos.map((promo, index) => (
-            <Reveal key={promo.title} variant="zoom" delay={index * 90} className={pageStyles.promo}>
-              <h3 className={pageStyles.promoTitle}>{promo.title}</h3>
-              <p className={pageStyles.promoSummary}>{promo.summary}</p>
-              <ul className={pageStyles.promoList}>
-                {promo.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
-                ))}
-              </ul>
-              {promo.footnote && <p className={pageStyles.promoFootnote}>{promo.footnote}</p>}
-            </Reveal>
-          ))}
-        </div>
         <div className={prose.actions}>
-          <Button href="/promocje" variant="plum">
-            Wszystkie promocje
+          <Button href="/cennik#modelowanie-sylwetki" variant="plum">
+            Cennik i serie
           </Button>
         </div>
       </Section>

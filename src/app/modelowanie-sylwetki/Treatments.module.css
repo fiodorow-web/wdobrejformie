@@ -74,53 +74,24 @@
   color: var(--color-accent-2);
 }
 
-/* ---- Promotions on the dark band ---- */
-.promo {
-  padding: var(--space-6);
-  border-radius: var(--radius-md);
-  background: var(--neutral-800);
-  border: 1px solid var(--neutral-700);
-  height: 100%;
-}
-
-.promoTitle {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-on-accent);
-  margin-bottom: var(--space-2);
-}
-
-.promoSummary {
-  color: var(--color-accent-2-soft);
-  font-weight: var(--fw-semibold);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-4);
-}
-
-.promoList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--neutral-300);
-  line-height: var(--leading-relaxed);
-}
-
-.promoList li::before {
-  content: '— ';
-  color: var(--color-accent-2-soft);
-}
-
-.promoFootnote {
-  margin-top: var(--space-4);
-  font-size: var(--text-xs);
-  /* --neutral-500 on --neutral-800 is only 3.2:1. */
-  color: var(--neutral-400);
-}
-
 /* ---- Single treatment page ---- */
+/*
+ * Treatment clip: on a phone the frame takes the clip's own 9:16 shape and the
+ * full width; from 640px it becomes a square across the column, with the whole
+ * clip centred and a blurred fill at the sides (Video fit="contain").
+ */
+.treatmentVideo {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  margin-bottom: var(--space-10);
+}
+
+@media (min-width: 640px) {
+  .treatmentVideo {
+    aspect-ratio: 1 / 1;
+  }
+}
+
 .detailLayout {
   display: grid;
   gap: var(--space-10);

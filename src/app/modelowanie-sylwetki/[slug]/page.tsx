@@ -75,11 +75,18 @@ export default async function TreatmentPage({ params }: { params: Promise<Params
               where a clip exists it leads; the photo covers the rest.
             */}
             {treatment.video && treatment.videoLabel ? (
+              /*
+               * The clips are filmed upright (9:16). A landscape frame cropped
+               * away two thirds of each one, and a narrow upright frame left the
+               * column half empty — so the frame spans the column and the whole
+               * clip sits in it, with a blurred fill beside it.
+               */
               <Video
                 src={treatment.video}
                 label={treatment.videoLabel}
-                ratio="4/3"
-                style={{ marginBottom: 'var(--space-10)' }}
+                ratio={null}
+                fit="contain"
+                className={styles.treatmentVideo}
               />
             ) : treatment.photo ? (
               <ImageSlot

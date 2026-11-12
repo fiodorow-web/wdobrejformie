@@ -58,8 +58,15 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <a href={site.patientZoneUrl} target="_blank" rel="noopener noreferrer">
-                Strefa Pacjenta
+              <a href={site.patientApp.appStore} target="_blank" rel="noopener noreferrer">
+                Aplikacja dla Pacjentów — App Store
+                <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+              </a>
+            </li>
+            <li>
+              <a href={site.patientApp.googlePlay} target="_blank" rel="noopener noreferrer">
+                Aplikacja dla Pacjentów — Google Play
+                <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
               </a>
             </li>
           </ul>

@@ -7,6 +7,7 @@ import {
   Button,
   Card,
   Eyebrow,
+  FacebookIcon,
   HeroSlider,
   ImageSlot,
   Reveal,
@@ -16,6 +17,7 @@ import {
 import type { HeroSlide } from '@/components/ds';
 import { Body, SectionHead, prose } from '@/components/sections/Prose';
 import { Marquee } from '@/components/sections/Marquee';
+import { FacebookFeed } from '@/components/sections/FacebookFeed';
 import { SIZE_QUARTER, SIZE_HALF } from '@/lib/image-sizes';
 import { site } from '@/content/site';
 import { serviceSummaries, processSteps } from '@/content/services';
@@ -295,6 +297,30 @@ export default function HomePage() {
           <Button href="/cennik#modelowanie-sylwetki" variant="secondary" onDark>
             Cennik zabiegów
           </Button>
+        </div>
+      </Section>
+
+      {/* Current promotions are announced on Facebook (client's request, 2026-11). */}
+      <Section tone="surface" aria-labelledby="facebook">
+        <div className={prose.split}>
+          <Reveal variant="left">
+            <SectionHead
+              eyebrow="Promocje"
+              title="Aktualne promocje znajdziesz na naszym Facebooku"
+              lead="Na bieżąco publikujemy tam promocje na zabiegi i konsultacje, metamorfozy naszych Pacjentów i porady."
+              headingId="facebook"
+            />
+            <div className={prose.actions}>
+              <Button href={site.social.facebook} variant="secondary">
+                <FacebookIcon />
+                Przejdź na nasz Facebook
+                <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+              </Button>
+            </div>
+          </Reveal>
+          <Reveal variant="right" delay={80}>
+            <FacebookFeed pageUrl={site.social.facebook} />
+          </Reveal>
         </div>
       </Section>
 

@@ -96,8 +96,10 @@ export const mealPlanAdvantages = [
   'W jadłospisach nie stosujemy żadnych suplementów diety.',
   'Plany zawierają wyłącznie produkty łatwo dostępne w sklepach.',
   'Nie musisz ważyć produktów — podajemy zarówno miary domowe, jak i ilość w gramach.',
-  'Plan jest rozpisany na każdy dzień osobno — na jednej kartce masz wszystkie posiłki i produkty na dany dzień.',
+  'Plan jest rozpisany na każdy dzień osobno i udostępniamy go w aplikacji na telefonie.',
+  'W aplikacji sam możesz wymienić posiłek na inny z listy zaproponowanych posiłków.',
   'Sam decydujesz o kolejności dni diety, dopasowując plan do swoich możliwości czasowych.',
+  'Na życzenie drukujemy też wersję papierową — przejrzystą i wygodną w kuchni podczas przygotowywania posiłków.',
 ] as const;
 
 export const mealPlanChoices = [

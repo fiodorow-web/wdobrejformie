@@ -52,7 +52,7 @@ export const visitFaq: FaqEntry[] = [
   },
   {
     q: 'Kto nie może wykonać badania BIA?',
-    a: 'Badania nie wykonujemy u kobiet w ciąży, osób z defibrylatorem serca, dzieci poniżej 5. roku życia oraz osób chorych na epilepsję.',
+    a: 'Badania nie wykonujemy u kobiet w ciąży, osób z defibrylatorem lub rozrusznikiem serca, osób z metalowymi elementami w ciele (np. metalowymi implantami, endoprotezami, stentami, klamrami chirurgicznymi), dzieci poniżej 5. roku życia oraz osób chorych na epilepsję.',
   },
   {
     q: 'Co zabrać na pierwszą wizytę?',
