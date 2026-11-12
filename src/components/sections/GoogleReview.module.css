@@ -1,0 +1,94 @@
+.card {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  margin-top: var(--space-12);
+  padding: var(--space-8);
+}
+
+@media (min-width: 700px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-10);
+    padding: var(--space-10);
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-warning);
+}
+
+.stars svg {
+  fill: currentColor;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-text-primary);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  line-height: var(--leading-snug);
+}
+
+.lead strong {
+  color: var(--color-cta);
+  font-weight: var(--fw-extrabold);
+}
+
+.note {
+  max-width: 52ch;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.actions {
+  margin-top: var(--space-2);
+}
+
+/* The QR code only helps someone at a computer — on a phone the button is the way in. */
+.qr {
+  display: none;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+@media (min-width: 700px) {
+  .qr {
+    display: flex;
+  }
+}
+
+.qr img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.qr figcaption {
+  max-width: 11rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: var(--leading-relaxed);
+}

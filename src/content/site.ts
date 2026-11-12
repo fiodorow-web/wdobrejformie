@@ -65,6 +65,23 @@ export const site = {
     googlePlay: 'https://play.google.com/store/apps/details?id=pl.dietetykpro.diet&hl=pl',
   },
 
+  /**
+   * Google review form — the link behind the QR code and NFC tag on the
+   * "oceń nas w Google" stand in the gabinet (decoded from the client's photo
+   * of it, 2026-11). public/qr/opinia-google.svg encodes the same address.
+   */
+  googleReviewUrl: 'https://g.page/r/CRHiRlR8HiAeEAE/review',
+
+  /**
+   * The nutrition questionnaire patients fill in before the first visit: the
+   * Google Form, or the PDF to print, fill in by hand and bring. The PDF was
+   * copied off the old WordPress uploads, which go away with the old site.
+   */
+  nutritionForm: {
+    online: 'https://forms.gle/ZVhpudy8chJF8dRq6',
+    pdf: '/dokumenty/formularz-zywieniowy-pacjenta.pdf',
+  },
+
   /** The poradnia's own profiles, supplied by the client (tracking query stripped). */
   social: {
     instagram: 'https://www.instagram.com/w_dobrej_formie/',

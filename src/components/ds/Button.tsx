@@ -44,7 +44,9 @@ export function Button({
   );
 
   if (href) {
-    const isInternal = href.startsWith('/') || href.startsWith('#');
+    // A document under /public (e.g. a PDF form) is a file, not a route — it opens like an external link.
+    const isFile = /\.(pdf|docx?)$/i.test(href);
+    const isInternal = (href.startsWith('/') || href.startsWith('#')) && !isFile;
 
     // A disabled link is not a thing in HTML; expose it to AT and drop the href.
     if (disabled) {

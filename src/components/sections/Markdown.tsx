@@ -21,7 +21,9 @@ const dimensions = imageSizes as Record<string, { width: number; height: number 
 const components = {
   a: ({ href = '', children, ...rest }: ComponentProps<'a'>) => {
     const isInternal = href.startsWith('/') || href.startsWith('#');
-    if (isInternal) {
+    // A document under /public (e.g. a PDF form) is a file, not a route — next/link would try to route to it.
+    const isFile = /\.(pdf|docx?)$/i.test(href);
+    if (isInternal && !isFile) {
       return (
         <Link href={href} {...rest}>
           {children}

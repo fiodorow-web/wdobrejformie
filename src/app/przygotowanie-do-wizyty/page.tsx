@@ -5,6 +5,7 @@ import { Body, CheckList, PageHeader, SectionHead, prose } from '@/components/se
 import { visitPreparation } from '@/content/services';
 import { biaContraindications } from '@/content/treatments';
 import { visitFaq } from '@/content/faq';
+import { site } from '@/content/site';
 import { JsonLd } from '@/components/JsonLd';
 import { faqJsonLd } from '@/lib/jsonld';
 import { SIZE_HALF } from '@/lib/image-sizes';
@@ -108,24 +109,60 @@ export default function VisitPreparationPage() {
         </div>
       </Section>
 
-      <Section tone="surface" aria-labelledby="dokumenty">
+      <Section tone="surface" aria-labelledby="przed-wizyta">
         <SectionHead
-          eyebrow="Na wizytę"
-          title="Co warto zabrać"
-          lead="Jeśli cierpisz na schorzenia przewlekłe zależne od diety — na przykład cukrzycę, insulinooporność czy podwyższony poziom cholesterolu."
-          headingId="dokumenty"
+          eyebrow="Przed pierwszą wizytą"
+          title="Dwie rzeczy do zrobienia wcześniej"
+          headingId="przed-wizyta"
         />
-        <CheckList
-          items={[
-            'Wyniki ostatnich badań.',
-            'Zapisane nazwy przyjmowanych leków.',
-            'Regulamin współpracy przeczytany przed wizytą — podczas pierwszego spotkania poprosimy o zaakceptowanie go czytelnym podpisem.',
-          ]}
-        />
-        <div className={prose.actions}>
-          <Button href="/regulamin" variant="secondary">
-            Przeczytaj regulamin
-          </Button>
+        <div className={prose.grid2}>
+          <Reveal variant="zoom">
+            <Card variant="tint" style={{ height: '100%' }}>
+              <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>
+                Uzupełnij formularz żywieniowy
+              </h3>
+              <p style={{ color: 'var(--color-text-secondary)', lineHeight: 'var(--leading-relaxed)' }}>
+                Wypełnij go online albo pobierz, wydrukuj i uzupełnij ręcznie — wtedy przynieś go
+                ze sobą na wizytę.
+              </p>
+              <div className={prose.actions} style={{ marginTop: 'var(--space-5)' }}>
+                <Button href={site.nutritionForm.online}>
+                  Wypełnij online
+                  <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                </Button>
+                <Button href={site.nutritionForm.pdf} variant="secondary">
+                  Pobierz do druku (PDF)
+                  <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                </Button>
+              </div>
+            </Card>
+          </Reveal>
+          <Reveal variant="zoom" delay={90}>
+            <Card variant="tint" style={{ height: '100%' }}>
+              <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>
+                Przeczytaj regulamin współpracy
+              </h3>
+              <p style={{ color: 'var(--color-text-secondary)', lineHeight: 'var(--leading-relaxed)' }}>
+                Zapoznaj się z nim przed wizytą. Podczas pierwszego spotkania poprosimy Cię o jego
+                podpisanie.
+              </p>
+              <div className={prose.actions} style={{ marginTop: 'var(--space-5)' }}>
+                <Button href="/regulamin" variant="secondary">
+                  Przeczytaj regulamin
+                </Button>
+              </div>
+            </Card>
+          </Reveal>
+        </div>
+
+        <div style={{ marginTop: 'var(--space-16)' }}>
+          <SectionHead
+            eyebrow="Na wizytę"
+            title="Co warto zabrać"
+            lead="Jeśli cierpisz na schorzenia przewlekłe zależne od diety — na przykład cukrzycę, insulinooporność czy podwyższony poziom cholesterolu."
+            headingId="dokumenty"
+          />
+          <CheckList items={['Wyniki ostatnich badań.', 'Zapisane nazwy przyjmowanych leków.']} />
         </div>
       </Section>
 

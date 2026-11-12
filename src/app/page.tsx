@@ -18,6 +18,7 @@ import type { HeroSlide } from '@/components/ds';
 import { Body, SectionHead, prose } from '@/components/sections/Prose';
 import { Marquee } from '@/components/sections/Marquee';
 import { FacebookFeed } from '@/components/sections/FacebookFeed';
+import { GoogleReview } from '@/components/sections/GoogleReview';
 import { SIZE_QUARTER, SIZE_HALF } from '@/lib/image-sizes';
 import { site } from '@/content/site';
 import { serviceSummaries, processSteps } from '@/content/services';
@@ -380,6 +381,10 @@ export default function HomePage() {
             Zobacz wszystkie metamorfozy
           </Button>
         </div>
+        {/* After other patients' results: the visitor's turn to leave one (client's request, 2026-11). */}
+        <Reveal variant="zoom">
+          <GoogleReview />
+        </Reveal>
       </Section>
 
       <Section tone="alt" aria-labelledby="faq">
