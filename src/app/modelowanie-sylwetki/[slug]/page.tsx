@@ -74,7 +74,17 @@ export default async function TreatmentPage({ params }: { params: Promise<Params
               Footage beats a still for a treatment nobody has had before, so
               where a clip exists it leads; the photo covers the rest.
             */}
-            {treatment.video && treatment.videoLabel ? (
+            {treatment.videos?.length ? (
+              /* Two upright clips (e.g. body and face) side by side fill the column whole, uncropped. */
+              <div className={styles.clipPair}>
+                {treatment.videos.map((clip) => (
+                  <figure key={clip.src} className={styles.clip}>
+                    <Video src={clip.src} label={clip.label} ratio="9/16" />
+                    <figcaption>{clip.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : treatment.video && treatment.videoLabel ? (
               /*
                * The clips are filmed upright (9:16). A landscape frame cropped
                * away two thirds of each one, and a narrow upright frame left the

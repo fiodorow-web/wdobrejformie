@@ -6,7 +6,7 @@ import { site } from '@/content/site';
 import { SIZE_HALF } from '@/lib/image-sizes';
 import homeStyles from '@/components/sections/Home.module.css';
 
-import planZywieniowy from '@/assets/photos/indywidualny-plan-zywieniowy.webp';
+import planZywieniowy from '@/assets/photos/plan-zywieniowy-wydruk.webp';
 import jadlospis from '@/assets/photos/ukladanie-jadlospisu-w-poradni.webp';
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function MealPlansPage() {
           </Reveal>
           <Reveal variant="right" delay={80}>
             <ImageSlot
-              label="Indywidualny plan żywieniowy przygotowywany przez dietetyka w poradni W Dobrej Formie"
+              label="Wydrukowane plany żywieniowe poradni W Dobrej Formie na biurku w gabinecie"
               src={planZywieniowy}
               ratio="4/3"
               sizes={SIZE_HALF}

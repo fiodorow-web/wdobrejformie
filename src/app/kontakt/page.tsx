@@ -7,7 +7,8 @@ import { site } from '@/content/site';
 import { SIZE_HALF } from '@/lib/image-sizes';
 import styles from './Contact.module.css';
 
-import gabinet from '@/assets/photos/gabinet-dietetyczny-wegrow.webp';
+// Current photo of the room from the client (2026-11).
+import gabinet from '@/assets/photos/gabinet-dietetyczny-wegrow-2026.webp';
 
 export const metadata: Metadata = {
   title: 'Kontakt — Węgrów, ul. Staszica 4',

@@ -32,7 +32,7 @@ import styles from '@/components/sections/Home.module.css';
 
 import konsultacja from '@/assets/photos/konsultacja-dietetyczna-wegrow.webp';
 import analizator from '@/assets/photos/analizator-skladu-ciala-jawon-ioi.webp';
-import planZywieniowy from '@/assets/photos/indywidualny-plan-zywieniowy.webp';
+import planZywieniowy from '@/assets/photos/plan-zywieniowy-wydruk.webp';
 // The service cards crop to 4:3, so they only ever get landscape frames — a
 // portrait photo loses its subject to the crop.
 import lipolaser from '@/assets/photos/lipolaser-plytki-laserowe-na-udach.webp';
@@ -121,7 +121,7 @@ const servicePhotos = {
  */
 const servicePhotoAlts = {
   '/konsultacje': 'Konsultacja dietetyczna w gabinecie w Węgrowie',
-  '/plany-zywieniowe': 'Dietetyk układa indywidualny plan żywieniowy dla pacjenta',
+  '/plany-zywieniowe': 'Wydrukowane plany żywieniowe poradni W Dobrej Formie na biurku w gabinecie',
   '/analiza-skladu-ciala': 'Analizator składu ciała Jawon Medical ioi',
   '/modelowanie-sylwetki': 'Płytki lipolasera przymocowane do ud podczas zabiegu',
 } as const;

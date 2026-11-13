@@ -14,7 +14,7 @@ import pageStyles from './Treatments.module.css';
 import urzadzenie from '@/assets/photos/urzadzenie-slimroll-x-strefa-zabiegowa.webp';
 import endomasaz from '@/assets/photos/endomasaz-slimroll-x-zabieg.webp';
 import zielonyLed from '@/assets/photos/zabieg-ujedrniajacy-zielone-led.webp';
-import endermologiaNogi from '@/assets/photos/zabieg-endermologii-na-nogi.webp';
+import kobido from '@/assets/photos/masaz-kobido-w-gabinecie.webp';
 import plytkiLipolaser from '@/assets/photos/lipolaser-plytki-diodowe.webp';
 import zabiegUda from '@/assets/photos/zabieg-modelowania-ud.webp';
 
@@ -27,7 +27,7 @@ const gallery = [
   { src: urzadzenie, alt: 'Urządzenie do modelowania sylwetki SLIMROLL X w gabinecie zabiegowym w Węgrowie' },
   { src: endomasaz, alt: 'Zabieg endomasażu rollerowego głowicą z podświetleniem LED' },
   { src: zielonyLed, alt: 'Zabieg ujędrniający głowicą z zielonym światłem LED na brzuchu' },
-  { src: endermologiaNogi, alt: 'Zabieg endermologii na nogi wykonywany głowicą rollerową' },
+  { src: kobido, alt: 'Masaż Kobido w strefie zabiegowej poradni W Dobrej Formie' },
   { src: plytkiLipolaser, alt: 'Płytki diodowe lipolasera z czerwonym światłem laserowym' },
   { src: zabiegUda, alt: 'Zabieg modelowania ud głowicą zabiegową w strefie zabiegowej' },
 ];

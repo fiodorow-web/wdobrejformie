@@ -13,7 +13,6 @@
 import type { StaticImageData } from 'next/image';
 
 import lipolaserPlytki from '@/assets/photos/lipolaser-plytki-laserowe-na-udach.webp';
-import glowicaRf from '@/assets/photos/glowica-rf-modelowanie-sylwetki.webp';
 import strefaZabiegowa from '@/assets/photos/strefa-zabiegowa-lezanka-i-urzadzenie.webp';
 import glowicaRolkowa from '@/assets/photos/glowica-endosferyczna-led-czerwone.webp';
 
@@ -23,9 +22,9 @@ export interface Treatment {
   /** One-line summary for cards and meta descriptions. */
   tagline: string;
   /**
-   * Photo from the gabinet, shown at the top of the treatment's own page.
-   * Kobido and oczyszczanie wodorowe are not photographed yet — ImageSlot
-   * renders a labelled gap for those.
+   * Photo from the gabinet, shown at the top of the treatment's own page when
+   * the treatment has no clip. Every treatment now has footage, so this is the
+   * fallback only.
    */
   photo?: StaticImageData;
   /**
@@ -41,6 +40,11 @@ export interface Treatment {
   video?: string;
   /** Describes the footage. Required whenever `video` is set. */
   videoLabel?: string;
+  /**
+   * Two or more clips shown side by side instead of `video` — e.g. the body and
+   * the face version of the same treatment. Each caption names what it shows.
+   */
+  videos?: Array<{ src: string; label: string; caption: string }>;
   durationLabel: string;
   /** Entry price of a single visit, in PLN ("od X zł" on the lists for treatments without priceText). */
   priceFrom: number;
@@ -132,8 +136,19 @@ export const treatments: Treatment[] = [
     slug: 'fale-radiowe-rf',
     name: 'Fale radiowe RF',
     tagline: 'Ujędrnienie zwiotczałej skóry i redukcja cellulitu.',
-    photo: glowicaRf,
-    photoAlt: 'Wielobiegunowa głowica fal radiowych RF prowadzona po skórze podczas zabiegu',
+    // Clips from the client (2026-11): the body and the face version, side by side.
+    videos: [
+      {
+        src: 'fale-radiowe-rf-cialo',
+        label: 'Zabieg falami radiowymi RF na brzuchu — głowica prowadzona po skórze pacjentki',
+        caption: 'Na ciało',
+      },
+      {
+        src: 'fale-radiowe-rf-twarz',
+        label: 'Zabieg falami radiowymi RF na twarzy — głowica prowadzona wzdłuż żuchwy, oczy pacjentki osłonięte płatkami',
+        caption: 'Na twarz',
+      },
+    ],
     durationLabel: '30 minut / 1 partia',
     priceFrom: 150,
     singlePrice: '150–240 zł',
@@ -225,6 +240,8 @@ export const treatments: Treatment[] = [
     slug: 'masaz-kobido',
     name: 'Masaż Kobido',
     tagline: 'Niechirurgiczny lifting twarzy.',
+    video: 'masaz-kobido-zabieg',
+    videoLabel: 'Masaż Kobido — dłonie masażystki pracują na twarzy pacjentki',
     durationLabel: '45–60 minut',
     priceFrom: 200,
     singlePrice: '200 zł',
@@ -248,6 +265,8 @@ export const treatments: Treatment[] = [
     slug: 'oczyszczanie-wodorowe',
     name: 'Oczyszczanie wodorowe',
     tagline: 'Głębokie oczyszczenie skóry cząsteczkami wodoru.',
+    video: 'oczyszczanie-wodorowe-zabieg',
+    videoLabel: 'Oczyszczanie wodorowe — głowica zabiegowa prowadzona po twarzy pacjentki',
     durationLabel: '60 minut',
     priceFrom: 220,
     singlePrice: '220 zł',
