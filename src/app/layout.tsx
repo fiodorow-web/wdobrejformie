@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Manrope } from 'next/font/google';
 import { NavBar, Footer } from '@/components/ds';
 import { JsonLd } from '@/components/JsonLd';
+import { SiteChrome } from '@/components/SiteChrome';
 import { organizationJsonLd } from '@/lib/jsonld';
 import { site } from '@/content/site';
 import { mainNav } from '@/content/navigation';
@@ -51,12 +52,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={site.lang} className={manrope.variable}>
       <body>
-        <a className="skip-link" href="#main">
-          Przejdź do treści
-        </a>
-        <NavBar links={mainNav} ctaHref="/kontakt" patientApp={site.patientApp} />
+        <SiteChrome>
+          <a className="skip-link" href="#main">
+            Przejdź do treści
+          </a>
+          <NavBar links={mainNav} ctaHref="/kontakt" patientApp={site.patientApp} />
+        </SiteChrome>
         <main id="main">{children}</main>
-        <Footer />
+        <SiteChrome>
+          <Footer />
+        </SiteChrome>
         <JsonLd data={organizationJsonLd()} />
       </body>
     </html>

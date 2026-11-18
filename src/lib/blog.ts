@@ -31,16 +31,25 @@ export function isArchived(post: PostMeta): boolean {
   return post.date < ARCHIVE_BEFORE;
 }
 
+/**
+ * Front-matter dates as 'YYYY-MM-DD'. The blog editor (Keystatic) writes them
+ * unquoted, which YAML reads as a Date object rather than a string.
+ */
+function isoDate(value: unknown): string {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return value ? String(value) : '';
+}
+
 function parse(slug: string, raw: string): Post {
   const { data, content } = matter(raw);
   return {
     slug,
     title: String(data.title ?? slug),
-    date: String(data.date ?? ''),
-    updated: String(data.updated ?? data.date ?? ''),
+    date: isoDate(data.date),
+    updated: isoDate(data.updated) || isoDate(data.date),
     excerpt: String(data.excerpt ?? ''),
     cover: data.cover ? String(data.cover) : undefined,
-    legacyUrl: String(data.legacyUrl ?? `/${slug}`),
+    legacyUrl: String(data.legacyUrl || `/${slug}`),
     content,
   };
 }

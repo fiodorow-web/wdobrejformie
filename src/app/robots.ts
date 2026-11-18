@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      // The blog editor and its API.
+      disallow: ['/keystatic', '/api/keystatic'],
     },
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,
