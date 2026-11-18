@@ -9,6 +9,7 @@ const staticRoutes: Array<{ path: string; priority: number; changeFrequency: 'we
   { path: '/oferta', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/cennik', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/modelowanie-sylwetki', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/modelowanie-sylwetki/masaze', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/konsultacje', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/plany-zywieniowe', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/analiza-skladu-ciala', priority: 0.8, changeFrequency: 'monthly' },

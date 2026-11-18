@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Accordion, Button, Card, ImageSlot, Reveal, Section, Video } from '@/components/ds';
 import { Body, PageHeader, SectionHead, prose } from '@/components/sections/Prose';
 import { treatmentPrice, treatments } from '@/content/treatments';
+import { massageDurationLabel, massagesFrom } from '@/content/massages';
 import { treatmentFaq } from '@/content/faq';
 import { JsonLd } from '@/components/JsonLd';
 import { faqJsonLd } from '@/lib/jsonld';
@@ -87,6 +88,23 @@ export default function TreatmentsHubPage() {
               </Link>
             </Reveal>
           ))}
+          {/* Massages: one tile for the six on their own page (client's request, 2026-11). */}
+          <Reveal delay={treatments.length * 50}>
+            <Link href="/modelowanie-sylwetki/masaze" className={pageStyles.card}>
+              <h3 className={pageStyles.cardTitle}>Masaże</h3>
+              <p className={pageStyles.cardText}>Wyszczuplające, ujędrniające, klasyczne i relaksacyjne.</p>
+              <dl className={pageStyles.cardMeta}>
+                <div>
+                  <dt>Czas</dt>
+                  <dd>{massageDurationLabel}</dd>
+                </div>
+                <div>
+                  <dt>Cena</dt>
+                  <dd>od {massagesFrom} zł</dd>
+                </div>
+              </dl>
+            </Link>
+          </Reveal>
         </div>
       </Section>
 

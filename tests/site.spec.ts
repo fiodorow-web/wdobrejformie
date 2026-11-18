@@ -11,6 +11,7 @@ const ROUTES = [
   '/przygotowanie-do-wizyty',
   '/modelowanie-sylwetki',
   '/modelowanie-sylwetki/kriolipoliza',
+  '/modelowanie-sylwetki/masaze',
   '/cennik',
   '/promocje',
   '/metamorfozy',

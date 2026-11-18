@@ -10,6 +10,7 @@
  * the Offer JSON-LD all read from this module.
  */
 
+import { massages } from './massages';
 import { site } from './site';
 
 export interface PriceRow {
@@ -273,14 +274,12 @@ const treatmentSections: PriceSection[] = [
   },
   {
     title: 'Fizjoterapia i masaże',
-    items: [
-      { name: 'Masaż wyszczuplający całego ciała', description: 'Sesja 60 minut.', price: 160 },
-      { name: 'Masaż wyszczuplająco-ujędrniający całego ciała', description: 'Sesja 60 minut.', price: 180 },
-      { name: 'Masaż wyszczuplający z boosterem ujędrniającym', description: 'Sesja 40 minut.', price: 160 },
-      { name: 'Masaż klasyczny całego ciała', description: 'Sesja 60 minut.', price: 160 },
-      { name: 'Masaż klasyczny — plecy, kark, barki', description: 'Sesja 30 minut.', price: 100 },
-      { name: 'Masaż relaksacyjny — plecy, kark, barki', description: 'Sesja 30 minut.', price: 100 },
-    ],
+    // From src/content/massages.ts, which also feeds /modelowanie-sylwetki/masaze.
+    items: massages.map((massage) => ({
+      name: massage.name,
+      description: `Sesja ${massage.minutes} minut.`,
+      price: massage.price,
+    })),
   },
 ];
 
